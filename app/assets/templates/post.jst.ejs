@@ -1,0 +1,22 @@
+<h4>
+  Post# <%= post.get('id') %>, created at: <%= post.get('created_at') %>
+</h4>
+
+<p>
+  <% var postRef = post.get('post_id') %>
+  <% if (postRef) { %>
+    Reply to: <a href="#<%= postRef %>"><%= postRef %></a>
+  <% } %>
+</p>
+
+<p>
+  <%= post.escape('body') %><br>
+  - <%= post.escape('signature') %>
+</p>
+
+<p>
+  <% var postLink = post.get('link') %>
+  <% if (postLink) { %>
+    Link: <a href="#<%= postLink %>"><%= _.escape(postLink) %></a>
+  <% } %>
+</p>

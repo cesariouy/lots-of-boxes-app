@@ -1,0 +1,3 @@
+class Soapbox < Box
+
+end

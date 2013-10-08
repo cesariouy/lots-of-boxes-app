@@ -1,0 +1,11 @@
+<h1>SoapBoxes</h1>
+
+<ul>
+  <% _(soapboxes.models).each(function(soapbox) { %>
+    <li>
+      <%= soapbox.get('title') %><br>
+      <% console.log(soapbox.get('posts')[0].body) %>
+      <%= "POST GOES HERE" %>
+    </li>
+  <% });%>
+</ul>

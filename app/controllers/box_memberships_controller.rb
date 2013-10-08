@@ -1,0 +1,2 @@
+class BoxMembershipsController < ApplicationController
+end

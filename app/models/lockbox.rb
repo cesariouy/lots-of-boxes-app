@@ -1,0 +1,3 @@
+class Lockbox < Box
+
+end

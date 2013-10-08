@@ -1,0 +1,11 @@
+
+<div id="soap-sidebar-bar" class="sidebar-bar">SIDEBAR</div>
+
+<div id="soap-content" class="content"></div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    var soapboxesData = <%= @soapboxes.to_json(include: :posts).html_safe %>;
+    LotsOfBoxesApp.initializeSoap(soapboxesData);
+  });
+</script>

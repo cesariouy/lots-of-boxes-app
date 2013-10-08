@@ -1,0 +1,38 @@
+<style>
+  #new-session {
+    margin-left: 375px;
+  }
+</style>
+
+<div id="new-session">
+<h1>login</h1>
+
+<form action="<%= session_url %>" method="post">
+  <input
+    name="authenticity_token"
+    type="hidden"
+    value="<%= form_authenticity_token %>"
+  >
+
+  <label>username:
+    <input
+      name="user[username]"
+      type="text"
+    >
+  </label>
+  <br>
+
+  <label>password:
+    <input
+      name="user[password]"
+      type="password"
+    >
+  </label>
+  <br>
+
+  <input type="submit" value="login">
+</form>
+
+<p><a href="<%= new_user_url %>">create a new account</a></p>
+
+</div>

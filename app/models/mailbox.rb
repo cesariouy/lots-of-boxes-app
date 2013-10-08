@@ -1,0 +1,3 @@
+class Mailbox < Box
+
+end

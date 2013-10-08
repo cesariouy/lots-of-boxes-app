@@ -15,3 +15,13 @@ Post.create(
   signature: "anonymous",
   align: "center"
 )
+
+Post.create(
+  box_id: 1,
+  user_id: 1,
+  post_id: 1,
+  body: "first is the worst, second is the best",
+  signature: "firstuser",
+  link: "http://answers.yahoo.com/question/index?qid=20081206114018AAib2Xg",
+  align: "right"
+)

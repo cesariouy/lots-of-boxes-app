@@ -1,11 +1,11 @@
 <h4>
-  Post# <%= post.get('id') %>, created at: <%= post.get('created_at') %>
+  post# <%= post.get('id') %>, created at: <%= post.get('created_at') %>
 </h4>
 
 <p>
   <% var postRef = post.get('post_id') %>
   <% if (postRef) { %>
-    Reply to: <a href="#<%= postRef %>"><%= postRef %></a>
+    reply to: <a href="#<%= postRef %>"><%= postRef %></a>
   <% } %>
 </p>
 
@@ -17,6 +17,6 @@
 <p>
   <% var postLink = post.get('link') %>
   <% if (postLink) { %>
-    Link: <a href="#<%= postLink %>"><%= _.escape(postLink) %></a>
+    link: <a href="#<%= postLink %>"><%= _.escape(postLink) %></a>
   <% } %>
 </p>

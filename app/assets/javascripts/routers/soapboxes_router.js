@@ -5,7 +5,8 @@ LotsOfBoxesApp.Routers.SoapboxesRouter = Backbone.Router.extend({
 
   routes: {
     "": "index",
-    "/:id": "show"
+    "soapboxes": "index",
+    "soapboxes/:id": "show"
   },
 
   index: function() {
@@ -15,6 +16,19 @@ LotsOfBoxesApp.Routers.SoapboxesRouter = Backbone.Router.extend({
       collection: that.soapboxes
     });
 
+    $('#soap-content').html(view.render().el);
+  },
+
+  show: function(boxID) {
+    var that = this;
+
+    var box = that.soapboxes.findWhere({id: parseInt(boxID)});
+
+    var view = new LotsOfBoxesApp.Views.SoapboxShow({
+      model: box
+    });
+
     $('#soap-content').html(view.render().$el);
   }
+
 });

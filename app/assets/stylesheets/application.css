@@ -14,6 +14,7 @@
 
 ul {
   list-style: none;
+  padding: 0;
 }
 
 .sidebar-area {
@@ -35,6 +36,10 @@ ul {
   height: 1000px;
   background: yellow;
   margin-left: 375px;
+}
+
+.box-preview {
+  background: lightBlue;
 }
 
 .left {

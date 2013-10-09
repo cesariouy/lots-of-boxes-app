@@ -2,7 +2,7 @@ class LockboxesController < ApplicationController
   before_filter :require_current_user!
 
   def index
-    all_lockboxes = current_user.lockboxes
+    all_lockboxes = current_user.followed_boxes.where(type: "Lockbox")
     sorted_lockboxes = all_lockboxes.sort_by do |lockbox|
       lockbox.posts.last.id
     end

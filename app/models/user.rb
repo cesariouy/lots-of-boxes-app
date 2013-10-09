@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :box_memberships
   has_many(
-    :memberships,
+    :followed_boxes,
     through: :box_memberships,
     source: :box
   )

@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Soapbox.create(title: "first soapBox")
+Lockbox.create(title: "first lockBox", key: "qqqqqq")
 
 Post.create(
   box_id: 1,
@@ -25,3 +26,6 @@ Post.create(
   link: "http://answers.yahoo.com/question/index?qid=20081206114018AAib2Xg",
   align: "right"
 )
+
+BoxMembership.create(box_id: 1, user_id: 1)
+BoxMembership.create(box_id: 2, user_id: 1)

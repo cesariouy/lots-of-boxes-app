@@ -1,14 +1,16 @@
 class SoapboxesController < ApplicationController
 
   def index
-    temp_soapboxes = Soapbox.all
-    @soapboxes = temp_soapboxes.sort_by do |soapbox|
+    all_soapboxes = Soapbox.all
+    sorted_soapboxes = all_soapboxes.sort_by do |soapbox|
       soapbox.posts.last.id
     end
 
+    @soapboxes = sorted_soapboxes.to_json(include: :posts).html_safe
+
     respond_to do |format|
       format.html { render :index }
-      format.json { render json: @soapboxes }
+      # format.json { render json: @soapboxes }
     end
   end
 

@@ -12,6 +12,15 @@
  *= require_tree .
  */
 
+body {
+/*  background:
+    url('/assets/use_your_illusion.png');*/
+}
+
+.errors {
+  background: red;
+}
+
 ul {
   list-style: none;
   padding: 0;
@@ -34,11 +43,15 @@ ul {
   float: left;
   width: 625px;
   height: 1000px;
-  background: yellow;
+  background: gray;
   margin-left: 375px;
 }
 
 .box-preview {
+  background: lightBlue;
+}
+
+.post {
   background: lightBlue;
 }
 

@@ -5,7 +5,15 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    var soapboxesData = <%= @soapboxes.to_json(include: :posts).html_safe %>;
+    <% if current_user %>
+      var CURRENT_USER_ID = <%= current_user.id %>;
+      var CURRENT_USER_USERNAME = "<%= current_user.username %>";
+    <% else %>
+      var CURRENT_USER_USERNAME = "guest";
+    <% end %>
+
+    var soapboxesData = <%= @soapboxes %>;
+
     LotsOfBoxesApp.initializeSoap(soapboxesData);
   });
 </script>

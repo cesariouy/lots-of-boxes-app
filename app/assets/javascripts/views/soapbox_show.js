@@ -16,7 +16,7 @@ LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
       var postView = new LotsOfBoxesApp.Views.Post({
         model: post,
         id: post.get('id'),
-        className: post.get('align')
+        className: 'post ' + post.get('align')
       });
 
       $li.html(postView.render().el);

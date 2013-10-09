@@ -35,13 +35,7 @@ GEM
       jquery-rails
       rails (>= 3.1)
     bcrypt-ruby (3.1.2)
-    better_errors (1.0.1)
-      coderay (>= 1.0.0)
-      erubis (>= 2.6.6)
-    binding_of_caller (0.7.2)
-      debug_inspector (>= 0.0.1)
     builder (3.0.4)
-    coderay (1.1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -49,7 +43,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
-    debug_inspector (0.0.2)
     eco (1.0.0)
       coffee-script
       eco-source
@@ -123,8 +116,6 @@ PLATFORMS
 DEPENDENCIES
   backbone-on-rails
   bcrypt-ruby
-  better_errors
-  binding_of_caller
   coffee-rails (~> 3.2.1)
   ejs
   jquery-rails

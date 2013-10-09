@@ -5,7 +5,6 @@ LotsOfBoxesApp.Routers.SoapboxesRouter = Backbone.Router.extend({
 
   routes: {
     "": "index",
-    "soapboxes": "index",
     "soapboxes/:id": "show"
   },
 

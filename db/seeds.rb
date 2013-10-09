@@ -27,5 +27,13 @@ Post.create(
   align: "right"
 )
 
+Post.create(
+  box_id: 2,
+  user_id: 1,
+  body: "secret stuff goes in here",
+  signature: "firstuser",
+  align: "left"
+)
+
 BoxMembership.create(box_id: 1, user_id: 1)
 BoxMembership.create(box_id: 2, user_id: 1)

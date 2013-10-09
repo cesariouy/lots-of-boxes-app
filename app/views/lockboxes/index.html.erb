@@ -1,0 +1,16 @@
+<div id="lock-content" class="content"></div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    <% if current_user %>
+      var CURRENT_USER_ID = <%= current_user.id %>;
+      var CURRENT_USER_USERNAME = "<%= current_user.username %>";
+    <% else %>
+      var CURRENT_USER_USERNAME = "guest";
+    <% end %>
+
+    var lockboxesData = <%= @lockboxes %>;
+
+    LotsOfBoxesApp.initializeLock(lockboxesData);
+  });
+</script>

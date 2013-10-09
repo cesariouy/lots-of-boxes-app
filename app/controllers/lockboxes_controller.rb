@@ -1,9 +1,18 @@
 class LockboxesController < ApplicationController
-  respond_to :html, :json
+  before_filter :require_current_user!
 
   def index
-    @lockboxes = Lockbox.all
-    respond_with(@lockboxes)
+    all_lockboxes = current_user.lockboxes
+    sorted_lockboxes = all_lockboxes.sort_by do |lockbox|
+      lockbox.posts.last.id
+    end
+
+    @lockboxes = sorted_lockboxes.to_json(include: :posts).html_safe
+
+    respond_to do |format|
+      format.html { render :index }
+      # format.json { render json: @lockboxes }
+    end
   end
 
   def create
@@ -15,7 +24,7 @@ class LockboxesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.json { render json: @lockbox.errors, status: 422 }
+        format.json { render json: @lockbox.errors.full_messages, status: 422 }
       end
     end
   end

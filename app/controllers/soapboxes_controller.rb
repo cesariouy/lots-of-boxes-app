@@ -23,7 +23,7 @@ class SoapboxesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.json { render json: @soapbox.errors, status: 422 }
+        format.json { render json: @soapbox.errors.full_messages, status: 422 }
       end
     end
   end

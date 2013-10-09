@@ -13,8 +13,8 @@
  */
 
 body {
-/*  background:
-    url('/assets/use_your_illusion.png');*/
+  background:
+    url('/assets/use_your_illusion.png');
 }
 
 .errors {
@@ -24,6 +24,7 @@ body {
 ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .sidebar-area {
@@ -32,6 +33,34 @@ ul {
   height: 100%;
   position: fixed;
   border: 1px dashed black;
+}
+
+.sidebar {
+  border: 1px solid black;
+  width: 250px;
+}
+
+#sidebar-items li {
+  display: block;
+  border: 1px solid black;
+}
+
+#soapboxes-li, #lockboxes-li, #mailboxes-li, #inbox-li, #outbox-li {
+  height: 30px;
+}
+
+#auth-info, #add-li, #refresh-li {
+  height: 90px;
+}
+
+#auth-info {
+  background: pink;
+}
+
+#sidebar-items li a {
+  background: yellow;
+  display: block;
+  height: 100%;
 }
 
 .content {
@@ -45,19 +74,23 @@ ul {
 .box-preview {
   background: lightBlue;
   width: 375px;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 .post {
   background: lightBlue;
   width: 375px;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 .left {
-  float: left;
+  margin-right: auto;
 }
 
 .right {
-  float: right;
+  margin-left: auto;
 }
 
 .center {

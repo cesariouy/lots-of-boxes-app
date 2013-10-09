@@ -7,12 +7,12 @@ LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
     that.$el.empty();
     that.$el.html('<h1>soapBoxes</h1>');
 
-    var boxList = $('<ul></ul>');
+    var $ul = $('<ul></ul>');
 
     _(that.collection.models).each(function(soapbox) {
-      var $li = $('<li class="box-preview"></li>');
-
+      var $li = $('<li></li>');
       $li.addClass(soapbox.get('id').toString());
+      $li.addClass('box-preview');
 
       $li.append(
         '<h3>' + soapbox.escape('title') + '</h3>'
@@ -22,17 +22,18 @@ LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
         _(soapbox.get('posts')).last()
       );
 
+      $li.addClass(lastPost.get('align'));
+
       var lastPostView = new LotsOfBoxesApp.Views.Post({
         model: lastPost,
-        id: lastPost.get('id'),
-        className: lastPost.get('align')
+        id: lastPost.get('id')
       });
 
       $li.append(lastPostView.render().el);
-      boxList.prepend($li);
+      $ul.prepend($li);
     });
 
-    that.$el.append(boxList);
+    that.$el.append($ul);
     return that;
   },
 
@@ -40,7 +41,7 @@ LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
     event.preventDefault();
     var classString = $(event.currentTarget).attr('class');
 
-    var idClass = classString.split(" ")[1];
+    var idClass = classString.split(" ")[0];
 
     Backbone.history.navigate('/soapboxes/' + idClass, {trigger: true});
   }

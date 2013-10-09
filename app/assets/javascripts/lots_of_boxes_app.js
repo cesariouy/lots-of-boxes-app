@@ -13,5 +13,6 @@ window.LotsOfBoxesApp = {
   initializeLock: function(lockboxesData) {
     var lockboxes = new LotsOfBoxesApp.Collections.Lockboxes(lockboxesData);
     new LotsOfBoxesApp.Routers.LockboxesRouter(lockboxes);
+    Backbone.history.start();
   }
 };

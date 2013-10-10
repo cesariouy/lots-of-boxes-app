@@ -1,27 +1,32 @@
 <form id="post-form">
-  <input type="hidden" name="post[box_id]" value="<%= box.get('id') %>">
+  <input type="hidden" name="post[box_id]" value="
+    <% if (box) { %>
+      <%= box.get("id") %>
+    <% } %>
+  ">
+
   <input type="hidden" name="post[user_id]" value="<%= CURRENT_USER_ID %>">
 
-  <label>reply to post#:
+  <label id="reply-to">reply to post#:<br>
     <input type="text" name="post[post_id]">
   </label><br>
 
-  <label>message:
+  <br><label>message:<br>
     <textarea name="post[body]"></textarea>
   </label><br>
 
-  <label>add link:
+  <br><label>add link:<br>
     <input type="text" name="post[link]">
   </label><br>
 
-  <label>sign as:</label><br>
+  <br><label>sign as:</label><br>
     <input type="radio" name="post[signature]" value="anonymous" checked>anonymous<br>
     <input type="radio" name="post[signature]" value="<%= CURRENT_USER_USERNAME %>">username<br>
 
-  <label>post position:</label><br>
+  <br><label>post position:</label><br>
     <input type="radio" name="post[align]" value="left">left<br>
     <input type="radio" name="post[align]" value="center" checked>center<br>
     <input type="radio" name="post[align]" value="right">right<br>
 
-  <input type="submit" value="add post">
+  <br><input type="submit" value="add post">
 </form>

@@ -16,9 +16,8 @@ LotsOfBoxesApp.Routers.SoapboxesRouter = Backbone.Router.extend({
   index: function() {
     var that = this;
 
-    // var formView = new LotsOfBoxesApp.Views.SoapboxForm({});
-    //
-    // $('#add-form').html(formView.render().el);
+    var formView = new LotsOfBoxesApp.Views.SoapboxForm({});
+    $('#add-form').html(formView.render().el);
 
     var view = new LotsOfBoxesApp.Views.SoapboxesIndex({
       collection: that.soapboxes

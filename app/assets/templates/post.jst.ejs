@@ -17,6 +17,6 @@
 <p>
   <% var postLink = post.get('link') %>
   <% if (postLink) { %>
-    link: <a href="#<%= postLink %>"><%= _.escape(postLink) %></a>
+    link: <a href="<%= postLink %>"><%= _.escape(postLink) %></a>
   <% } %>
 </p>

@@ -1,4 +1,7 @@
 <form id="post-form">
+  <input type="hidden" name="post[box_id]" value="<%= box.get('id') %>">
+  <input type="hidden" name="post[user_id]" value="<%= CURRENT_USER_ID %>">
+
   <label>reply to post#:
     <input type="text" name="post[post_id]">
   </label><br>
@@ -13,7 +16,7 @@
 
   <label>sign as:</label><br>
     <input type="radio" name="post[signature]" value="anonymous" checked>anonymous<br>
-    <input type="radio" name="post[signature]" value="username">username<br>
+    <input type="radio" name="post[signature]" value="<%= CURRENT_USER_USERNAME %>">username<br>
 
   <label>post position:</label><br>
     <input type="radio" name="post[align]" value="left">left<br>

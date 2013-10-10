@@ -17,7 +17,8 @@ LotsOfBoxesApp.Routers.SoapboxesRouter = Backbone.Router.extend({
     var that = this;
 
     // var formView = new LotsOfBoxesApp.Views.SoapboxForm({});
-    $('#add-form').html('box form here!');
+    //
+    // $('#add-form').html(formView.render().el);
 
     var view = new LotsOfBoxesApp.Views.SoapboxesIndex({
       collection: that.soapboxes
@@ -28,17 +29,13 @@ LotsOfBoxesApp.Routers.SoapboxesRouter = Backbone.Router.extend({
 
   show: function(boxID) {
     var that = this;
-
-    // var formView = new LotsOfBoxesApp.Views.PostForm({});
-    $('#add-form').html('post form here!');
-
     var box = that.soapboxes.findWhere({id: parseInt(boxID)});
 
-    var view = new LotsOfBoxesApp.Views.SoapboxShow({
-      model: box
-    });
+    var formView = new LotsOfBoxesApp.Views.PostForm({model: box});
+    $('#add-form').html(formView.render().el);
 
-    $('#soap-content').html(view.render().$el);
+    var view = new LotsOfBoxesApp.Views.SoapboxShow({model: box});
+    $('#soap-content').html(view.render().el);
   }
 
 });

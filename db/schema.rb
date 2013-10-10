@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(:version => 20131007160228) do
     t.integer  "box_id",     :null => false
     t.integer  "user_id"
     t.integer  "post_id"
-    t.text     "body",       :null => false
+    t.text     "body"
     t.string   "link"
     t.string   "signature",  :null => false
     t.string   "align",      :null => false

@@ -4,12 +4,20 @@ LotsOfBoxesApp.Routers.SoapboxesRouter = Backbone.Router.extend({
   },
 
   routes: {
-    "": "index",
-    "soapboxes/:id": "show"
+    "": "redirectToIndex",
+    "soap": "index",
+    "soap/:id": "show"
+  },
+
+  redirectToIndex: function() {
+    Backbone.history.navigate('/soap', {trigger: true});
   },
 
   index: function() {
     var that = this;
+
+    // var formView = new LotsOfBoxesApp.Views.SoapboxForm({});
+    $('#add-form').html('box form here!');
 
     var view = new LotsOfBoxesApp.Views.SoapboxesIndex({
       collection: that.soapboxes
@@ -20,6 +28,9 @@ LotsOfBoxesApp.Routers.SoapboxesRouter = Backbone.Router.extend({
 
   show: function(boxID) {
     var that = this;
+
+    // var formView = new LotsOfBoxesApp.Views.PostForm({});
+    $('#add-form').html('post form here!');
 
     var box = that.soapboxes.findWhere({id: parseInt(boxID)});
 

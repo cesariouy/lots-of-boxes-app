@@ -63,6 +63,20 @@ ul {
   height: 100%;
 }
 
+#add-form {
+  position: absolute;
+  width: 600px;
+  height: 200px;
+  top: -90px;
+  background: white;
+  display: none;
+}
+
+#add-li:hover #add-form {
+  display: block;
+  position: relative;
+}
+
 .content {
   float: left;
   width: 625px;

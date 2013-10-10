@@ -1,0 +1,24 @@
+<form id="post-form">
+  <label>reply to post#:
+    <input type="text" name="post[post_id]">
+  </label><br>
+
+  <label>message:
+    <textarea name="post[body]"></textarea>
+  </label><br>
+
+  <label>add link:
+    <input type="text" name="post[link]">
+  </label><br>
+
+  <label>sign as:</label><br>
+    <input type="radio" name="post[signature]" value="anonymous" checked>anonymous<br>
+    <input type="radio" name="post[signature]" value="username">username<br>
+
+  <label>post position:</label><br>
+    <input type="radio" name="post[align]" value="left">left<br>
+    <input type="radio" name="post[align]" value="center" checked>center<br>
+    <input type="radio" name="post[align]" value="right">right<br>
+
+  <input type="submit" value="add post">
+</form>

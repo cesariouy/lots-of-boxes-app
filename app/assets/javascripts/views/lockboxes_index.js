@@ -45,7 +45,7 @@ LotsOfBoxesApp.Views.LockboxesIndex = Backbone.View.extend({
 
     console.log('clicking');
 
-    Backbone.history.navigate('/lockboxes/' + idClass, {trigger: true});
+    Backbone.history.navigate('lock/' + idClass, {trigger: true});
   }
 
 });

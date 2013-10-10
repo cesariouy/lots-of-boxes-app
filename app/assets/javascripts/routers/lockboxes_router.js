@@ -4,9 +4,13 @@ LotsOfBoxesApp.Routers.LockboxesRouter = Backbone.Router.extend({
   },
 
   routes: {
-    "": "index",
-    "lockboxes": "index",
-    "lockboxes/:id": "show"
+    "": "redirectToIndex",
+    "lock": "index",
+    "lock/:id": "show"
+  },
+
+  redirectToIndex: function() {
+    Backbone.history.navigate('lock', {trigger: true});
   },
 
   index: function() {

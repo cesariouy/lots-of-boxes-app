@@ -43,7 +43,7 @@ LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
 
     var idClass = classString.split(" ")[0];
 
-    Backbone.history.navigate('/soapboxes/' + idClass, {trigger: true});
+    Backbone.history.navigate('soap/' + idClass, {trigger: true});
   }
 
 });

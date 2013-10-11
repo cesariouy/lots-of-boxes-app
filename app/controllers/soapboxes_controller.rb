@@ -3,7 +3,7 @@ class SoapboxesController < ApplicationController
   def index
     all_soapboxes = Soapbox.all
     sorted_soapboxes = all_soapboxes.sort_by do |soapbox|
-      soapbox.posts.last.id
+      soapbox.posts.first.id  # beware first/last issue
     end
 
     @soapboxes = sorted_soapboxes.to_json(include: :posts).html_safe

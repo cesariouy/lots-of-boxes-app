@@ -5,6 +5,8 @@ LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
   render: function() {
     var that = this;
     that.$el.empty();
+    $('#soap-content').attr('class', 'content index');
+
     that.$el.html('<h1>soapBoxes</h1>');
 
     var $ul = $('<ul></ul>');
@@ -15,14 +17,14 @@ LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
       $li.addClass(idString);
       $li.addClass('box-preview');
 
-      var boxTitle = $('<h3></h3>');
-      titleContent = soapbox.escape('title') + " (box# " + idString + ")";
-      boxTitle.html(titleContent);
+      var $h3 = $('<h3></h3>');
+      var titleContent = soapbox.escape('title') + " (box# " + idString + ")";
+      $h3.html(titleContent);
 
-      $li.append(boxTitle);
+      $li.append($h3);
 
       var lastPost = new LotsOfBoxesApp.Models.Post(
-        _(soapbox.get('posts')).first()  //why does this work...
+        _(soapbox.get('posts')).first()  // beware first/last issue...
       );
 
       $li.addClass(lastPost.get('align'));

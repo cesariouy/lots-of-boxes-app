@@ -4,7 +4,7 @@ class LockboxesController < ApplicationController
   def index
     all_lockboxes = current_user.followed_boxes.where(type: "Lockbox")
     sorted_lockboxes = all_lockboxes.sort_by do |lockbox|
-      lockbox.posts.last.id
+      lockbox.posts.first.id  # beware first/last issue
     end
 
     @lockboxes = sorted_lockboxes.to_json(include: :posts).html_safe

@@ -2,15 +2,23 @@ LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
   render: function() {
     var that = this;
     that.$el.empty();
+    $('#soap-content').attr('class', 'content box');
 
-    var title = $('<h2></h2>');
-    title.html(that.model.escape('title'));
-    that.$el.html(title);
+    var $h2 = $('<h2></h2>');
+    var title = that.model.escape('title');
+    var idString = that.model.get('id').toString();
+    var titleContent = title + " (box# " + idString + ")";
+
+    $h2.html(titleContent);
+    that.$el.html($h2);
 
     var postList = $('<ul></ul>');
-    var posts = new LotsOfBoxesApp.Collections.Posts(that.model.get('posts'));
 
-    // for some reason this iterates from the last post to the first...
+    // beware iteration (first => last / last => first)
+    var reversedPosts = that.model.get('posts');
+    var unReversedPosts = reversedPosts.reverse();
+    var posts = new LotsOfBoxesApp.Collections.Posts(unReversedPosts);
+
     _(posts.models).each(function(post) {
       var $li = $('<li></li>');
 
@@ -21,7 +29,7 @@ LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
       });
 
       $li.html(postView.render().el);
-      postList.prepend($li);
+      postList.append($li);
     });
 
     that.$el.append(postList);

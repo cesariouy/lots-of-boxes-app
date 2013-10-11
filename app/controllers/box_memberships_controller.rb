@@ -4,7 +4,7 @@ class BoxMembershipsController < ApplicationController
   def create
     @box_membership = BoxMembership.new(params[:box_membership])
 
-    if @box_membership.box.type == "Lockbox"
+    if params[:lockbox]
       lockbox = Lockbox.find_by_credentials(
         params[:lockbox][:title],
         params[:lockbox][:key]
@@ -15,6 +15,8 @@ class BoxMembershipsController < ApplicationController
           format.json { render json: { error: "Credentials were wrong" }, status: 422 }
         end
         return
+      else
+        @box_membership.box_id = lockbox.id
       end
     end
 

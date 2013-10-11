@@ -12,14 +12,31 @@
  *= require_tree .
  */
 
+/*html {
+  height: 100%;
+  width: 100%;
+}*/
+
 body {
   background:
-    url('/assets/use_your_illusion.png');
+    url('/assets/use_your_illusion.png') fixed;
     margin: 0;
+  color: burlyWood;
+  font-family: sans-serif;
+/*    height: 100%;*/
+}
+
+a {
+  text-decoration: none;
+  color: burlyWood;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 .errors {
-  background: red;
+  background: fireBrick;
 }
 
 ul {
@@ -55,16 +72,19 @@ ul {
 }
 
 #auth-info {
-  background: pink;
+  background: steelBlue;
+/*  opacity: 0.5;*/
 }
 
 #sidebar-items li a {
-  background: yellow;
+  background: steelBlue;
+/*  opacity: 0.5;*/
   display: block;
   height: 100%;
 }
 
 #add-form {
+  color: black;
   position: fixed;
   top: 0;
   width: 300px;
@@ -79,25 +99,42 @@ ul {
 }
 
 .content {
-  float: left;
   width: 625px;
-  height: 1000px;
-  background: gray;
-  margin-left: 375px;
+/*  height: 100%;*/
+  background: rgba(169, 169, 169, 0.25);
+  margin-left: auto;
+  margin-right: 125px;
+  padding: 10px 10px 20px 10px;
+}
+
+.index {
+  background: rgba(169, 169, 169, 0.25);
+}
+
+.box {
+  background: rgba(0, 139, 139, 0.25);
 }
 
 .box-preview {
-  background: lightBlue;
+  background: darkCyan;
   width: 375px;
   margin-top: 1em;
   margin-bottom: 1em;
+  opacity: 0.5;
+  padding: 10px;
+}
+
+.box-preview:hover {
+  opacity: 1;
 }
 
 .post {
-  background: lightBlue;
+  background: cadetBlue;
   width: 375px;
   margin-top: 1em;
   margin-bottom: 1em;
+  opacity: 0.7;
+  padding: 10px;
 }
 
 .left {

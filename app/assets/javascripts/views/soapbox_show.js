@@ -10,6 +10,7 @@ LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
     var postList = $('<ul></ul>');
     var posts = new LotsOfBoxesApp.Collections.Posts(that.model.get('posts'));
 
+    // for some reason this iterates from the last post to the first...
     _(posts.models).each(function(post) {
       var $li = $('<li></li>');
 
@@ -20,7 +21,7 @@ LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
       });
 
       $li.html(postView.render().el);
-      postList.append($li);
+      postList.prepend($li);
     });
 
     that.$el.append(postList);

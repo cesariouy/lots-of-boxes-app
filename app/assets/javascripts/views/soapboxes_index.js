@@ -11,15 +11,18 @@ LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
 
     _(that.collection.models).each(function(soapbox) {
       var $li = $('<li></li>');
-      $li.addClass(soapbox.get('id').toString());
+      var idString = soapbox.get('id').toString();
+      $li.addClass(idString);
       $li.addClass('box-preview');
 
-      $li.append(
-        '<h3>' + soapbox.escape('title') + '</h3>'
-      );
+      var boxTitle = $('<h3></h3>');
+      titleContent = soapbox.escape('title') + " (box# " + idString + ")";
+      boxTitle.html(titleContent);
+
+      $li.append(boxTitle);
 
       var lastPost = new LotsOfBoxesApp.Models.Post(
-        _(soapbox.get('posts')).first()
+        _(soapbox.get('posts')).first()  //why does this work...
       );
 
       $li.addClass(lastPost.get('align'));

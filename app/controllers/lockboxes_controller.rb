@@ -3,6 +3,8 @@ class LockboxesController < ApplicationController
 
   def index
     all_lockboxes = current_user.followed_boxes.where(type: "Lockbox")
+    all_lockboxes.reject! { |lockbox| lockbox.posts.empty? }
+
     sorted_lockboxes = all_lockboxes.sort_by do |lockbox|
       lockbox.posts.first.id  # beware first/last issue
     end
@@ -17,8 +19,12 @@ class LockboxesController < ApplicationController
 
   def create
     @lockbox = Lockbox.new(params[:lockbox])
+    post = Post.new(params[:post])
 
     if @lockbox.save
+      post.box_id = @lockbox.id
+      post.save
+
       respond_to do |format|
         format.json { render json: @lockbox }
       end

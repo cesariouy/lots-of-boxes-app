@@ -28,22 +28,41 @@ LotsOfBoxesApp.Views.LockboxForm = Backbone.View.extend({
     that.$el.append($unlockForm);
     that.$el.append('<h4>--OR-- add new lockBox</h4>');
 
-    // strip post view of 'reply-to' input
     var postFormView = new LotsOfBoxesApp.Views.PostForm();
     var renderedPostForm = postFormView.render().el;
-    var newForm = $(renderedPostForm).children()[0];
+    var newForm = $(renderedPostForm).find('form');
 
-    var replyInput = $(newForm).children('label#reply-to')[0];
+    // strip post view of 'box', 'reply-to' inputs
+    var boxIdInput = $(newForm).find('[name="post[box_id]"]');
+    $(boxIdInput).remove();
+
+    var replyInput = $(newForm).find('#reply-to');
     $(replyInput).remove();
+
+    // rename post[] inputs to lockbox[post][] inputs
+    var userIdInput = $(newForm).find('[name="post[user_id]"]');
+    userIdInput.attr('name', 'lockbox[post][user_id]');
+
+    var bodyInput = $(newForm).find('[name="post[body]"]');
+    bodyInput.attr('name', 'lockbox[post][body]');
+
+    var linkInput = $(newForm).find('[name="post[link]"]');
+    linkInput.attr('name', 'lockbox[post][link]');
+
+    var signatureInput = $(newForm).children('[name="post[signature]"]');
+    signatureInput.attr('name', 'lockbox[post][signature]');
+
+    var alignInput = $(newForm).children('[name="post[align]"]');
+    alignInput.attr('name', 'lockbox[post][align]');
 
     // new title/key inputs
     var keyInput = $(
-      '<br><label>key:<br><input type="password" name="box[key]"></label>'
+      '<br><label>key:<br><input type="password" name="lockbox[key]"></label>'
     );
     $(newForm).prepend(keyInput);
 
     var titleInput = $(
-      '<label>title:<br><input type="text" name="box[title]"></label>'
+      '<label>title:<br><input type="text" name="lockbox[title]"></label>'
     );
     $(newForm).prepend(titleInput);
 
@@ -54,15 +73,9 @@ LotsOfBoxesApp.Views.LockboxForm = Backbone.View.extend({
   submit: function(event) {
     event.preventDefault();
     var formData = $(event.target).serializeJSON();
-    var lockbox = new LotsOfBoxesApp.Models.Lockbox(formData.box);
-    var firstPost = new LotsOfBoxesApp.Models.Post(formData.post);
+    var lockbox = new LotsOfBoxesApp.Models.Lockbox(formData.lockbox);
 
-    lockbox.save({}, {
-      success: function(savedSoapbox) {
-        firstPost.set('box_id', savedSoapbox.get('id'));
-        firstPost.save();
-      }
-    });
+    lockbox.save();
   },
 
   unlock: function(event) {
@@ -70,7 +83,7 @@ LotsOfBoxesApp.Views.LockboxForm = Backbone.View.extend({
     var formData = $(event.target).serializeJSON();
     var boxMembership = new LotsOfBoxesApp.Models.BoxMembership(
       formData.box_membership);
-      console.log(formData);
+
     boxMembership.save();
   }
 });

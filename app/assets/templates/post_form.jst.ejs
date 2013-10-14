@@ -1,6 +1,6 @@
 <form id="post-form">
   <input type="hidden" name="post[box_id]" value="
-    <% if (box) { %>
+    <% if (typeof box !== 'undefined') { %>
       <%= box.get("id") %>
     <% } %>
   ">

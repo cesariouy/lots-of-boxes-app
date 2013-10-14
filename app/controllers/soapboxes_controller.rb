@@ -8,7 +8,7 @@ class SoapboxesController < ApplicationController
       soapbox.posts.first.id  # beware first/last issue
     end
 
-    @soapboxes = sorted_soapboxes.to_json(include: :posts).html_safe
+    @soapboxes = sorted_soapboxes.to_json(include: [:posts, :box_memberships]).html_safe
 
     respond_to do |format|
       format.html { render :index }

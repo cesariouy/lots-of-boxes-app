@@ -32,5 +32,12 @@ class BoxMembershipsController < ApplicationController
   end
 
   def destroy
+    @box_membership = BoxMembership.find(params[:id])
+    @box_membership.destroy
+
+    respond_to do |format|
+      # format.html
+      format.json { render json: "box membership destroyed", status: 200 }
+    end
   end
 end

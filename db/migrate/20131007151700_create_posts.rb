@@ -5,7 +5,7 @@ class CreatePosts < ActiveRecord::Migration
       t.references :user
       t.references :post
       t.text :body
-      t.string :link
+      t.text :link
       t.string :signature, null: false
       t.string :align, null: false
 

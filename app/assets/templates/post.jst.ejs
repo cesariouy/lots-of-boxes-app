@@ -3,7 +3,7 @@
 </h4>
 
 <p>
-  <% var postRef = post.get('post_id') %>
+  <% var postRef = post.escape('post_id') %>
   <% if (postRef) { %>
     reply to: <a href="#<%= postRef %>"><%= postRef %></a>
   <% } %>
@@ -15,8 +15,14 @@
 </p>
 
 <p>
-  <% var postLink = post.get('link') %>
+  <% var postLink = post.escape('link') %>
   <% if (postLink) { %>
-    link: <a href="<%= postLink %>"><%= _.escape(postLink) %></a>
+    link: <a href="<%= postLink %>">
+      <% if (postLink.length < 45) { %>
+        <%= postLink %>
+      <% } else { %>
+        <%= postLink.slice(0, 45) %>...
+      <% } %>
+    </a>
   <% } %>
 </p>

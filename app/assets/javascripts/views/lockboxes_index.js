@@ -1,36 +1,42 @@
-LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
+LotsOfBoxesApp.Views.LockboxesIndex = Backbone.View.extend({
   events: {
     "click li.box-preview": "renderShow"
   },
   render: function() {
     var that = this;
     that.$el.empty();
-    $('#soap-content').attr('class', 'content index');
+    $('#lock-content').attr('class', 'content index');
 
-    that.$el.html('<h1>soapBoxes</h1>');
+    that.$el.html('<h1>lockBoxes</h1>');
 
     var $ul = $('<ul></ul>');
 
-    _(that.collection.models).each(function(soapbox) {
+    _(that.collection.models).each(function(lockbox) {
       var $li = $('<li></li>');
-      var idString = soapbox.get('id').toString();
+      var idString = lockbox.get('id').toString();
       $li.addClass(idString);
       $li.addClass('box-preview');
 
       var $h3 = $('<h3></h3>');
-      var title = soapbox.escape('title');
-      var boxNumStr = " (soapbox# " + idString + ",";
-      var numPostsStr = " posts: " + soapbox.get('posts').length + ")";
-      var titleContent = title + boxNumStr + numPostsStr;
+      var titleContent = lockbox.escape('title') + " (box# " + idString + ")";
       $h3.html(titleContent);
 
       $li.append($h3);
 
       var lastPost = new LotsOfBoxesApp.Models.Post(
-        _(soapbox.get('posts')).first()  // beware first/last issue...
+        _(lockbox.get('posts')).first()  // beware first/last issue...
       );
 
-      $li.addClass(lastPost.get('align'));
+      // alignment based on box creator, not most recent post
+      var firstPost = new LotsOfBoxesApp.Models.Post(
+        _(lockbox.get('posts')).last() // beware first/last issue...
+      );
+
+      if (firstPost.get('user_id') === CURRENT_USER_ID) {
+        $li.addClass('left');
+      } else {
+        $li.addClass('right');
+      };
 
       var lastPostView = new LotsOfBoxesApp.Views.Post({
         model: lastPost,
@@ -51,7 +57,7 @@ LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
 
     var idClass = classString.split(" ")[0];
 
-    Backbone.history.navigate('soap/' + idClass, {trigger: true});
+    Backbone.history.navigate('lock/' + idClass, {trigger: true});
   }
 
 });

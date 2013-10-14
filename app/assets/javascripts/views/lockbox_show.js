@@ -1,15 +1,13 @@
-LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
+LotsOfBoxesApp.Views.LockboxShow = Backbone.View.extend({
   render: function() {
     var that = this;
     that.$el.empty();
-    $('#soap-content').attr('class', 'content box');
+    $('#lock-content').attr('class', 'content box');
 
     var $h2 = $('<h2></h2>');
     var title = that.model.escape('title');
     var idString = that.model.get('id').toString();
-    var boxNumStr = " (soapbox# " + idString + ",";
-    var numPostsStr = " posts: " + that.model.get('posts').length + ")";
-    var titleContent = title + boxNumStr + numPostsStr;
+    var titleContent = title + " (box# " + idString + ")";
 
     $h2.html(titleContent);
     that.$el.html($h2);

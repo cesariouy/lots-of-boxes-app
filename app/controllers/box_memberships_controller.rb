@@ -37,7 +37,7 @@ class BoxMembershipsController < ApplicationController
 
     respond_to do |format|
       # format.html
-      format.json { render json: "box membership destroyed", status: 200 }
+      format.json { render json: @box_membership }
     end
   end
 end

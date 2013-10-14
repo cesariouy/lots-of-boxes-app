@@ -149,3 +149,19 @@ ul {
   margin-left: auto;
   margin-right: auto;
 }
+
+h2 button.follow {
+  display: inline;
+}
+
+h2 button.unfollow {
+  display: none;
+}
+
+h2.following button.follow {
+  display: none;
+}
+
+h2.following button.unfollow {
+  display: inline;
+}

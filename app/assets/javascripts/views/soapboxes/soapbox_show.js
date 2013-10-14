@@ -23,6 +23,10 @@ LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
 
     // populate heading
     var $h2 = $('<h2></h2>');
+    if (that.findMembership()) {
+      $h2.addClass('following');
+    }
+
     var title = that.model.escape('title');
     var idString = that.model.get('id').toString();
     var boxNumStr = " (soapbox #" + idString + ",";
@@ -74,7 +78,11 @@ LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
       user_id: CURRENT_USER_ID
     });
 
-    boxMembership.save();
+    boxMembership.save({}, {
+      success: function() {
+        $('h2').addClass('following');
+      }
+    });
   },
 
   unfollow: function(event) {
@@ -82,7 +90,12 @@ LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
     event.preventDefault();
 
     var boxMembership = that.findMembership();
-    boxMembership.destroy();
+    console.log(boxMembership);
+    boxMembership.destroy({
+      success: function() {
+        $('h2').removeClass('following');
+      }
+    });
   }
 
 });

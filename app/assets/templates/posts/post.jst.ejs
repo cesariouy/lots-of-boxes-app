@@ -9,9 +9,8 @@
   <% } %>
 </p>
 
-<p>
-  <%= post.escape('body') %><br>
-  - <%= post.escape('signature') %>
+<p style="white-space: pre-wrap"><%= post.escape('body') %>
+  <br> - <%= post.escape('signature') %>
 </p>
 
 <p>

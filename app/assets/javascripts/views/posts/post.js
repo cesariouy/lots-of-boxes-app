@@ -1,5 +1,5 @@
 LotsOfBoxesApp.Views.Post = Backbone.View.extend({
-  template: JST['post'],
+  template: JST['posts/post'],
 
   render: function() {
     var that = this;

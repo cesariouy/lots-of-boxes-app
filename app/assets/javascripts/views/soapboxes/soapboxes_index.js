@@ -19,7 +19,7 @@ LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
 
       var $h3 = $('<h3></h3>');
       var title = soapbox.escape('title');
-      var boxNumStr = " (soapbox# " + idString + ",";
+      var boxNumStr = " (soapbox #" + idString + ",";
       var numPostsStr = " posts: " + soapbox.get('posts').length + ")";
       var titleContent = title + boxNumStr + numPostsStr;
       $h3.html(titleContent);

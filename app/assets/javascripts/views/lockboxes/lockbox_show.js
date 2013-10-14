@@ -7,7 +7,7 @@ LotsOfBoxesApp.Views.LockboxShow = Backbone.View.extend({
     var $h2 = $('<h2></h2>');
     var title = that.model.escape('title');
     var idString = that.model.get('id').toString();
-    var boxNumStr = " (lockbox# " + idString + ",";
+    var boxNumStr = " (lockbox #" + idString + ",";
     var numPostsStr = " posts: " + that.model.get('posts').length + ")";
     var titleContent = title + boxNumStr + numPostsStr;
 

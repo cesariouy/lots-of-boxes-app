@@ -19,10 +19,17 @@ class SoapboxesController < ApplicationController
   def create
     @soapbox = Soapbox.new(params[:soapbox])
     post = Post.new(params[:post])
+    if current_user
+      box_membership = BoxMembership.new(user_id: current_user.id)
+    end
 
     if @soapbox.save
       post.box_id = @soapbox.id
       post.save
+      if box_membership
+        box_membership.box_id = @soapbox.id
+        box_membership.save
+      end
 
       respond_to do |format|
         format.json { render json: @soapbox }

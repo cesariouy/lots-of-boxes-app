@@ -19,7 +19,7 @@ LotsOfBoxesApp.Views.LockboxesIndex = Backbone.View.extend({
 
       var $h3 = $('<h3></h3>');
       var title = lockbox.escape('title');
-      var boxNumStr = " (lockbox# " + idString + ",";
+      var boxNumStr = " (lockbox #" + idString + ",";
       var numPostsStr = " posts: " + lockbox.get('posts').length + ")";
       var titleContent = title + boxNumStr + numPostsStr;
       $h3.html(titleContent);

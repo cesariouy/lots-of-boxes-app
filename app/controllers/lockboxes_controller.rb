@@ -20,10 +20,13 @@ class LockboxesController < ApplicationController
   def create
     @lockbox = Lockbox.new(params[:lockbox])
     post = Post.new(params[:post])
+    box_membership = BoxMembership.new(user_id: current_user.id)
 
     if @lockbox.save
       post.box_id = @lockbox.id
       post.save
+      box_membership.box_id = @lockbox.id
+      box_membership.save
 
       respond_to do |format|
         format.json { render json: @lockbox }

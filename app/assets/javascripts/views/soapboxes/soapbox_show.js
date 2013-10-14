@@ -1,4 +1,17 @@
 LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
+  initialize: function() {
+    var that = this;
+    that.boxMemberships = new LotsOfBoxesApp.Collections.BoxMemberships(
+      that.model.get('box_memberships')
+    );
+    that.listenTo(that.boxMemberships, "add", function() {
+      that.render();
+    });
+    that.listenTo(that.boxMemberships, "remove", function() {
+      that.render();
+    });
+  },
+
   events: {
     "click button.follow": "follow",
     "click button.unfollow": "unfollow"
@@ -6,10 +19,7 @@ LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
 
   findMembership: function() {
     var that = this;
-    var boxMemberships = new LotsOfBoxesApp.Collections.BoxMemberships(
-      that.model.get('box_memberships')
-    );
-    var boxMembership = boxMemberships.findWhere({
+    var boxMembership = that.boxMemberships.findWhere({
       user_id: CURRENT_USER_ID
     });
 
@@ -79,8 +89,9 @@ LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
     });
 
     boxMembership.save({}, {
-      success: function() {
-        $('h2').addClass('following');
+      wait: true,
+      success: function(savedMembership) {
+        that.boxMemberships.add(savedMembership);
       }
     });
   },
@@ -90,10 +101,9 @@ LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
     event.preventDefault();
 
     var boxMembership = that.findMembership();
-    console.log(boxMembership);
     boxMembership.destroy({
+      wait: true,
       success: function() {
-        $('h2').removeClass('following');
       }
     });
   }

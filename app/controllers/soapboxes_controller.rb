@@ -16,6 +16,16 @@ class SoapboxesController < ApplicationController
     end
   end
 
+  def show
+    soapbox = Soapbox.find(params[:id])
+    @soapbox = soapbox.to_json(include: [:posts, :box_memberships]).html_safe
+
+    respond_to do |format|
+      # format.html { render :show }
+      format.json { render json: @soapbox }
+    end
+  end
+
   def create
     @soapbox = Soapbox.new(params[:soapbox])
     post = Post.new(params[:post])

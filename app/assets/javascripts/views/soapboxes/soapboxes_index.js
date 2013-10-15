@@ -1,4 +1,33 @@
 LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
+  initialize: function() {
+    var that = this;
+
+    that.listenOnSoapboxes();
+    that.renderForm();
+  },
+
+  listenOnSoapboxes: function() {
+    var that = this;
+    that.listenTo(that.collection, "add", function() {
+      that.collection.fetch({
+        success: function() {
+          that.render();
+        }
+      });
+    });
+    // that.listenTo(that.collection, "remove", function() {
+    //   that.render();
+    // });
+  },
+
+  renderForm: function() {
+    var that = this;
+    that.formView = new LotsOfBoxesApp.Views.SoapboxForm({
+      collection: that.collection
+    });
+    $('#add-form').html(that.formView.render().el);
+  },
+
   events: {
     "click li.box-preview": "renderShow"
   },
@@ -11,12 +40,14 @@ LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
 
     var $ul = $('<ul></ul>');
 
+    // boxes should be pre-sorted from controller based on most recent post
     _(that.collection.models).each(function(soapbox) {
       var $li = $('<li></li>');
       var idString = soapbox.get('id').toString();
       $li.addClass(idString);
       $li.addClass('box-preview');
 
+      // title
       var $h3 = $('<h3></h3>');
       var title = soapbox.escape('title');
       var boxNumStr = " (soapbox #" + idString + ",";
@@ -26,6 +57,7 @@ LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
 
       $li.append($h3);
 
+      // last post
       var lastPost = new LotsOfBoxesApp.Models.Post(
         _(soapbox.get('posts')).first()  // beware first/last issue...
       );
@@ -46,11 +78,13 @@ LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
   },
 
   renderShow: function(event) {
+    var that = this;
     event.preventDefault();
     var classString = $(event.currentTarget).attr('class');
+    // that.stopListening();
 
+    // first item in class is actually box id
     var idClass = classString.split(" ")[0];
-
     Backbone.history.navigate('soap/' + idClass, {trigger: true});
   }
 

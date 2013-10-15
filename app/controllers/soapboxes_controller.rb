@@ -12,7 +12,7 @@ class SoapboxesController < ApplicationController
 
     respond_to do |format|
       format.html { render :index }
-      # format.json { render json: @soapboxes }
+      format.json { render json: @soapboxes }
     end
   end
 
@@ -42,7 +42,7 @@ class SoapboxesController < ApplicationController
       end
 
       respond_to do |format|
-        format.json { render json: @soapbox }
+        format.json { render json: @soapbox.to_json(include: :posts) }
       end
     else
       respond_to do |format|

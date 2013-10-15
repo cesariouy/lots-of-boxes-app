@@ -3,7 +3,7 @@ LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
     var that = this;
     that.listenOnMemberships();
     that.listenOnPosts();
-    that.listenOnForm();
+    that.renderForm();
   },
 
   listenOnMemberships: function() {
@@ -25,16 +25,19 @@ LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
       that.model.get('posts')
     );
     that.listenTo(that.posts, "add", function() {
-      console.log('adding');
-      that.render();
+      that.model.fetch({
+        success: function() {
+          that.posts.reset(that.model.get('posts'));
+          that.render();
+        }
+      });
     });
-    that.listenTo(that.posts, "remove", function() {
-      console.log('removing');
-      that.render();
-    });
+    // that.listenTo(that.posts, "remove", function() {
+    //   that.render();
+    // });
   },
 
-  listenOnForm: function() {
+  renderForm: function() {
     var that = this;
     that.formView = new LotsOfBoxesApp.Views.PostForm({
       model: that.model,

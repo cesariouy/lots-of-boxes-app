@@ -1,7 +1,37 @@
 LotsOfBoxesApp.Views.LockboxesIndex = Backbone.View.extend({
+  initialize: function() {
+    var that = this;
+    that.listenOnLockboxes();
+    that.renderForm();
+  },
+
+  listenOnLockboxes: function() {
+    var that = this;
+    that.listenTo(that.collection, "add", function() {
+      that.collection.fetch({
+        reset: true,
+        success: function() {
+          that.render();
+        }
+      });
+    });
+    // that.listenTo(that.collection, "remove", function() {
+    //   that.render();
+    // });
+  },
+
+  renderForm: function() {
+    var that = this;
+    that.formView = new LotsOfBoxesApp.Views.LockboxForm({
+      collection: that.collection
+    });
+    $('#add-form').html(that.formView.render().el);
+  },
+
   events: {
     "click li.box-preview": "renderShow"
   },
+
   render: function() {
     var that = this;
     that.$el.empty();
@@ -11,12 +41,14 @@ LotsOfBoxesApp.Views.LockboxesIndex = Backbone.View.extend({
 
     var $ul = $('<ul></ul>');
 
+    // boxes should be pre-sorted from controller based on most recent post
     _(that.collection.models).each(function(lockbox) {
       var $li = $('<li></li>');
       var idString = lockbox.get('id').toString();
       $li.addClass(idString);
       $li.addClass('box-preview');
 
+      //  title
       var $h3 = $('<h3></h3>');
       var title = lockbox.escape('title');
       var boxNumStr = " (lockbox #" + idString + ",";
@@ -26,13 +58,14 @@ LotsOfBoxesApp.Views.LockboxesIndex = Backbone.View.extend({
 
       $li.append($h3);
 
+      //  last post
       var lastPost = new LotsOfBoxesApp.Models.Post(
-        _(lockbox.get('posts')).first()  // beware first/last issue...
+        _(lockbox.get('posts')).last()  // beware first/last issue...
       );
 
       // alignment based on box creator, not most recent post
       var firstPost = new LotsOfBoxesApp.Models.Post(
-        _(lockbox.get('posts')).last() // beware first/last issue...
+        _(lockbox.get('posts')).first() // beware first/last issue...
       );
 
       if (firstPost.get('user_id') === CURRENT_USER_ID) {
@@ -55,11 +88,13 @@ LotsOfBoxesApp.Views.LockboxesIndex = Backbone.View.extend({
   },
 
   renderShow: function(event) {
+    var that = this;
     event.preventDefault();
     var classString = $(event.currentTarget).attr('class');
+    that.stopListening();
 
+    // first item in class is actually box id
     var idClass = classString.split(" ")[0];
-
     Backbone.history.navigate('lock/' + idClass, {trigger: true});
   }
 

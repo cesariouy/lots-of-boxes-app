@@ -71,19 +71,35 @@ LotsOfBoxesApp.Views.LockboxForm = Backbone.View.extend({
   },
 
   submit: function(event) {
+    var that = this;
     event.preventDefault();
     var formData = $(event.target).serializeJSON();
     var lockbox = new LotsOfBoxesApp.Models.Lockbox(formData.lockbox);
 
-    lockbox.save();
+    lockbox.save({}, {
+      success: function(savedBox) {
+        $('form').find('input[type="text"]').val('');
+        $('form').find('textarea').val('');
+        $('form').find('input[type="password"]').val('');
+        that.collection.add(savedBox);
+      }
+    });
   },
 
   unlock: function(event) {
+    var that = this;
     event.preventDefault();
     var formData = $(event.target).serializeJSON();
     var boxMembership = new LotsOfBoxesApp.Models.BoxMembership(
       formData.box_membership);
 
-    boxMembership.save();
+    boxMembership.save({}, {
+      success: function(savedMembership) {
+        $('form').find('input[type="text"]').val('');
+        $('form').find('input[type="password"]').val('');
+        var unlockedBox = savedMembership.get('box');
+        that.collection.add(unlockedBox);
+      }
+    });
   }
 });

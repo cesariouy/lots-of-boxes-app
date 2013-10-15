@@ -50,6 +50,8 @@ LotsOfBoxesApp.Views.SoapboxForm = Backbone.View.extend({
 
     soapbox.save({}, {
       success: function(savedBox) {
+        $('form').find('input[type="text"]').val('');
+        $('form').find('textarea').val('');
         that.collection.add(savedBox);
       }
     });

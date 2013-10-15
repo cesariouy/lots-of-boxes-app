@@ -5,7 +5,7 @@ class SoapboxesController < ApplicationController
     all_soapboxes.reject! { |soapbox| soapbox.posts.empty? }
 
     sorted_soapboxes = all_soapboxes.sort_by do |soapbox|
-      soapbox.posts.first.id  # beware first/last issue
+      soapbox.posts.last.id
     end
 
     @soapboxes = sorted_soapboxes.to_json(include: [:posts, :box_memberships]).html_safe

@@ -1,7 +1,6 @@
 LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
   initialize: function() {
     var that = this;
-
     that.listenOnSoapboxes();
     that.renderForm();
   },
@@ -10,6 +9,7 @@ LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
     var that = this;
     that.listenTo(that.collection, "add", function() {
       that.collection.fetch({
+        reset: true,
         success: function() {
           that.render();
         }
@@ -31,6 +31,7 @@ LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
   events: {
     "click li.box-preview": "renderShow"
   },
+
   render: function() {
     var that = this;
     that.$el.empty();
@@ -59,7 +60,7 @@ LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
 
       // last post
       var lastPost = new LotsOfBoxesApp.Models.Post(
-        _(soapbox.get('posts')).first()  // beware first/last issue...
+        _(soapbox.get('posts')).last()  // beware first/last issue...
       );
 
       $li.addClass(lastPost.get('align'));
@@ -81,7 +82,7 @@ LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
     var that = this;
     event.preventDefault();
     var classString = $(event.currentTarget).attr('class');
-    // that.stopListening();
+    that.stopListening();
 
     // first item in class is actually box id
     var idClass = classString.split(" ")[0];

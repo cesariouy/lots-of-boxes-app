@@ -22,7 +22,7 @@ class BoxMembershipsController < ApplicationController
 
     if @box_membership.save
       respond_to do |format|
-        format.json { render json: @box_membership }
+        format.json { render json: @box_membership.to_json(include: :box) }
       end
     else
       respond_to do |format|

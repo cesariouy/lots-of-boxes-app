@@ -25,8 +25,11 @@ LotsOfBoxesApp.Routers.SoapboxesRouter = Backbone.Router.extend({
   show: function(boxID) {
     var that = this;
     var box = that.soapboxes.findWhere({id: parseInt(boxID)});
-    var view = new LotsOfBoxesApp.Views.SoapboxShow({model: box});
-    $('#soap-content').html(view.render().el);
+
+    box.fetch({success: function() {
+      var view = new LotsOfBoxesApp.Views.SoapboxShow({model: box});
+      $('#soap-content').html(view.render().el);
+    }});
   }
 
 });

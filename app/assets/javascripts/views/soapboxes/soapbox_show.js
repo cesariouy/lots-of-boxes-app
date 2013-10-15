@@ -63,7 +63,6 @@ LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
   render: function() {
     var that = this;
     that.$el.empty();
-
     $('#soap-content').attr('class', 'content box');
 
     // populate heading

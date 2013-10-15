@@ -6,14 +6,24 @@ class LockboxesController < ApplicationController
     all_lockboxes.reject! { |lockbox| lockbox.posts.empty? }
 
     sorted_lockboxes = all_lockboxes.sort_by do |lockbox|
-      lockbox.posts.first.id  # beware first/last issue
+      lockbox.posts.last.id
     end
 
-    @lockboxes = sorted_lockboxes.to_json(include: :posts).html_safe
+    @lockboxes = sorted_lockboxes.to_json(include: [:posts, :box_memberships]).html_safe
 
     respond_to do |format|
       format.html { render :index }
-      # format.json { render json: @lockboxes }
+      format.json { render json: @lockboxes }
+    end
+  end
+
+  def show
+    lockbox = Lockbox.find(params[:id])
+    @lockbox = lockbox.to_json(include: [:posts, :box_memberships]).html_safe
+
+    respond_to do |format|
+      # format.html { render :show }
+      format.json { render json: @lockbox }
     end
   end
 

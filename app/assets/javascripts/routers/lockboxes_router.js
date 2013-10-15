@@ -15,10 +15,6 @@ LotsOfBoxesApp.Routers.LockboxesRouter = Backbone.Router.extend({
 
   index: function() {
     var that = this;
-
-    var formView = new LotsOfBoxesApp.Views.LockboxForm({});
-    $('#add-form').html(formView.render().el);
-
     var view = new LotsOfBoxesApp.Views.LockboxesIndex({
       collection: that.lockboxes
     });
@@ -30,11 +26,10 @@ LotsOfBoxesApp.Routers.LockboxesRouter = Backbone.Router.extend({
     var that = this;
     var box = that.lockboxes.findWhere({id: parseInt(boxID)});
 
-    var formView = new LotsOfBoxesApp.Views.PostForm({model: box});
-    $('#add-form').html(formView.render().el);
-
-    var view = new LotsOfBoxesApp.Views.LockboxShow({model: box});
-    $('#lock-content').html(view.render().el);
+    box.fetch({success: function() {
+      var view = new LotsOfBoxesApp.Views.LockboxShow({model: box});
+      $('#lock-content').html(view.render().el);
+    }});
   }
 
 });

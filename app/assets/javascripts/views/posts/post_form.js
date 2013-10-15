@@ -20,6 +20,8 @@ LotsOfBoxesApp.Views.PostForm = Backbone.View.extend({
 
     post.save({}, {
       success: function(savedPost) {
+        $('form').find('input[type="text"]').val('');
+        $('form').find('textarea').val('');
         that.collection.add(savedPost);
       }
     });

@@ -13,9 +13,14 @@ LotsOfBoxesApp.Views.PostForm = Backbone.View.extend({
   },
 
   submit: function(event) {
+    var that = this;
     event.preventDefault();
     var formData = $(event.target).serializeJSON();
     var post = new LotsOfBoxesApp.Models.Post(formData);
-    post.save();
+    post.save({}, {
+      success: function(savedPost) {
+        that.collection.add(savedPost);
+      }
+    });
   }
 });

@@ -1,6 +1,13 @@
 LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
   initialize: function() {
     var that = this;
+    that.listenOnMemberships();
+    that.listenOnPosts();
+    that.listenOnForm();
+  },
+
+  listenOnMemberships: function() {
+    var that = this;
     that.boxMemberships = new LotsOfBoxesApp.Collections.BoxMemberships(
       that.model.get('box_memberships')
     );
@@ -10,6 +17,30 @@ LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
     that.listenTo(that.boxMemberships, "remove", function() {
       that.render();
     });
+  },
+
+  listenOnPosts: function() {
+    var that = this;
+    that.posts = new LotsOfBoxesApp.Collections.Posts(
+      that.model.get('posts')
+    );
+    that.listenTo(that.posts, "add", function() {
+      console.log('adding');
+      that.render();
+    });
+    that.listenTo(that.posts, "remove", function() {
+      console.log('removing');
+      that.render();
+    });
+  },
+
+  listenOnForm: function() {
+    var that = this;
+    that.formView = new LotsOfBoxesApp.Views.PostForm({
+      model: that.model,
+      collection: that.posts
+    });
+    $('#add-form').html(that.formView.render().el);
   },
 
   events: {
@@ -29,6 +60,7 @@ LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
   render: function() {
     var that = this;
     that.$el.empty();
+
     $('#soap-content').attr('class', 'content box');
 
     // populate heading
@@ -58,11 +90,12 @@ LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
     var postList = $('<ul></ul>');
 
     // beware iteration (first => last / last => first)
-    var reversedPosts = that.model.get('posts');
-    var unReversedPosts = reversedPosts.reverse();
-    var posts = new LotsOfBoxesApp.Collections.Posts(unReversedPosts);
+    var clonedPosts = that.posts.clone();
+    var sortedPosts = _(clonedPosts.models).sortBy(function(post) {
+      return post.get('id');
+    });
 
-    _(posts.models).each(function(post) {
+    _(sortedPosts).each(function(post) {
       var $li = $('<li></li>');
 
       var postView = new LotsOfBoxesApp.Views.Post({
@@ -89,7 +122,6 @@ LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
     });
 
     boxMembership.save({}, {
-      wait: true,
       success: function(savedMembership) {
         that.boxMemberships.add(savedMembership);
       }
@@ -102,7 +134,6 @@ LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
 
     var boxMembership = that.findMembership();
     boxMembership.destroy({
-      wait: true,
       success: function() {
       }
     });

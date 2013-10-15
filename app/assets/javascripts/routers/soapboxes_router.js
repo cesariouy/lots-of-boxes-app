@@ -30,8 +30,8 @@ LotsOfBoxesApp.Routers.SoapboxesRouter = Backbone.Router.extend({
     var that = this;
     var box = that.soapboxes.findWhere({id: parseInt(boxID)});
 
-    var formView = new LotsOfBoxesApp.Views.PostForm({model: box});
-    $('#add-form').html(formView.render().el);
+    // var formView = new LotsOfBoxesApp.Views.PostForm({model: box});
+    // $('#add-form').html(formView.render().el);
 
     var view = new LotsOfBoxesApp.Views.SoapboxShow({model: box});
     $('#soap-content').html(view.render().el);

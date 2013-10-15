@@ -43,10 +43,11 @@ LotsOfBoxesApp.Views.SoapboxForm = Backbone.View.extend({
   },
 
   submit: function(event) {
+    var that = this;
     event.preventDefault();
     var formData = $(event.target).serializeJSON();
     var soapbox = new LotsOfBoxesApp.Models.Soapbox(formData.soapbox);
 
-    soapbox.save();
+    soapbox.save({}, { success: function(savedBox){} });
   }
 });

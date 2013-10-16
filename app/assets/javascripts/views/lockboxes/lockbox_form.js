@@ -13,16 +13,16 @@ LotsOfBoxesApp.Views.LockboxForm = Backbone.View.extend({
     var $userIdInput = $(
       '<input type="hidden" name="box_membership[user_id]" value="'
       + CURRENT_USER_ID + '">');
-    var $lockBoxTitleInput = $(
+    var $lockboxTitleInput = $(
       '<label>title: <input type="text" name="box_membership[lockbox][title]"></label><br>'
     );
-    var $lockBoxKeyInput = $(
+    var $lockboxKeyInput = $(
       '<label>key: <input type="password" name="box_membership[lockbox][key]"></label><br>'
     );
 
     $unlockForm.append($userIdInput);
-    $unlockForm.append($lockBoxTitleInput);
-    $unlockForm.append($lockBoxKeyInput);
+    $unlockForm.append($lockboxTitleInput);
+    $unlockForm.append($lockboxKeyInput);
     $unlockForm.append('<input type="submit" value="unlock">');
 
     that.$el.append($unlockForm);

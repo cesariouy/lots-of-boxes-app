@@ -14,5 +14,11 @@ window.LotsOfBoxesApp = {
     var lockboxes = new LotsOfBoxesApp.Collections.Lockboxes(lockboxesData);
     new LotsOfBoxesApp.Routers.LockboxesRouter(lockboxes);
     Backbone.history.start();
+  },
+
+  initializeMail: function(mailboxesData) {
+    var mailboxes = new LotsOfBoxesApp.Collections.Mailboxes(mailboxesData);
+    new LotsOfBoxesApp.Routers.MailboxesRouter(mailboxes);
+    Backbone.history.start();
   }
 };

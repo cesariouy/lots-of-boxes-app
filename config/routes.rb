@@ -9,5 +9,7 @@ LotsOfBoxesApp::Application.routes.draw do
   resources :lockboxes, only: [:create, :destroy, :index, :show]
   resources :mailboxes, only: [:create, :destroy, :index, :show]
 
+  resources :contacts, only: [:create, :destroy]
+
   root to: "soapboxes#index"
 end

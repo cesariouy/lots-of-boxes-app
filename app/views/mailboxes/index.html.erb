@@ -1,0 +1,17 @@
+<div id="mail-content" class="content index"></div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    <% if current_user %>
+      CURRENT_USER_ID = <%= current_user.id %>;
+      CURRENT_USER_USERNAME = "<%= current_user.username %>";
+    <% else %>
+      CURRENT_USER_ID = "";
+      CURRENT_USER_USERNAME = "guest";
+    <% end %>
+
+    var mailboxesData = <%= @mailboxes %>;
+
+    LotsOfBoxesApp.initializeMail(mailboxesData);
+  });
+</script>

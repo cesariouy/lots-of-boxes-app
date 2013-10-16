@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131007160228) do
+ActiveRecord::Schema.define(:version => 20131015203001) do
 
   create_table "box_memberships", :force => true do |t|
     t.integer  "box_id",     :null => false
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(:version => 20131007160228) do
 
   add_index "boxes", ["title"], :name => "index_boxes_on_title"
   add_index "boxes", ["type"], :name => "index_boxes_on_type"
+
+  create_table "contacts", :force => true do |t|
+    t.integer  "from",       :null => false
+    t.integer  "to",         :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "contacts", ["from"], :name => "index_contacts_on_from"
+  add_index "contacts", ["to"], :name => "index_contacts_on_to"
 
   create_table "posts", :force => true do |t|
     t.integer  "box_id",     :null => false

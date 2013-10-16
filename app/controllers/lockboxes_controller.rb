@@ -39,7 +39,7 @@ class LockboxesController < ApplicationController
       box_membership.save
 
       respond_to do |format|
-        format.json { render json: @lockbox }
+        format.json { render json: @lockbox.to_json(include: :posts) }
       end
     else
       respond_to do |format|

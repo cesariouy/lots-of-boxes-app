@@ -3,9 +3,9 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
 
     if @post.save
-      render json: @post
+      render json: @post.to_json
     else
-      render json: @post.errors, status: 422
+      render json: @post.errors.full_messages, status: 422
     end
   end
 

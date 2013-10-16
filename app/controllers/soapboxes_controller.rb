@@ -10,9 +10,7 @@ class SoapboxesController < ApplicationController
 
     respond_to do |format|
       format.html { render :index }
-      format.json {
-        render json: @soapboxes.to_json(include: [:posts, :box_memberships]).html_safe
-      }
+      format.json { render json: Box.jsonify(@soapboxes) }
     end
   end
 
@@ -21,29 +19,24 @@ class SoapboxesController < ApplicationController
 
     respond_to do |format|
       # format.html { render :show }
-      format.json {
-        render json: @soapbox.to_json(include: [:posts, :box_memberships]).html_safe
-      }
+      format.json { render json: Box.jsonify(@soapbox) }
     end
   end
 
   def create
     @soapbox = Soapbox.new(params[:soapbox])
     post = Post.new(params[:post])
-    if current_user
-      box_membership = BoxMembership.new(user_id: current_user.id)
-    end
 
     if @soapbox.save
       post.box_id = @soapbox.id
       post.save
-      if box_membership
-        box_membership.box_id = @soapbox.id
-        box_membership.save
+
+      if current_user
+        @soapbox.create_membership(current_user.id)
       end
 
       respond_to do |format|
-        format.json { render json: @soapbox.to_json(include: [:posts, :box_memberships]) }
+        format.json { render json: Box.jsonify(@soapbox) }
       end
     else
       respond_to do |format|

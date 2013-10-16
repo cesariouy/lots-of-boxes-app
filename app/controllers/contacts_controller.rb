@@ -15,29 +15,15 @@ class ContactsController < ApplicationController
     end
 
     if @contact.save
-      #
-      pair_id = @contact.pair
+      pair_id = @contact.find_pair
 
       if pair_id
-        pair_username = User.find(pair_id).username
-        current_username = current_user.username
-
-        mailbox = Mailbox.create(
-          title: "correspondence between " + pair_username + " and " + current_username
-        )
-        Post.create(
-          box_id: mailbox.id,
-          user_id: -1,
-          body: "contact established",
-          signature: "SYSTEM",
-          align: "center",
-        )
-        BoxMembership.create(box_id: mailbox.id, user_id: pair_id)
-        BoxMembership.create(box_id: mailbox.id, user_id: current_user.id)
+        paired_user = User.find(pair_id)
+        @contact.create_mailbox(current_user, paired_user)
       end
-      #
+
       respond_to do |format|
-        format.json { render json: @contact }
+        format.json { render json: @contact.to_json }
       end
     else
       respond_to do |format|

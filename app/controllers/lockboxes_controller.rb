@@ -11,9 +11,7 @@ class LockboxesController < ApplicationController
 
     respond_to do |format|
       format.html { render :index }
-      format.json {
-        render json: @lockboxes.to_json(include: [:posts, :box_memberships]).html_safe
-      }
+      format.json { render json: Box.jsonify(@lockboxes) }
     end
   end
 
@@ -22,25 +20,22 @@ class LockboxesController < ApplicationController
 
     respond_to do |format|
       # format.html { render :show }
-      format.json {
-        render json: @lockbox.to_json(include: [:posts, :box_memberships]).html_safe
-      }
+      format.json { render json: Box.jsonify(@lockbox) }
     end
   end
 
   def create
     @lockbox = Lockbox.new(params[:lockbox])
     post = Post.new(params[:post])
-    box_membership = BoxMembership.new(user_id: current_user.id)
 
     if @lockbox.save
       post.box_id = @lockbox.id
       post.save
-      box_membership.box_id = @lockbox.id
-      box_membership.save
+
+      @lockbox.create_membership(current_user.id)
 
       respond_to do |format|
-        format.json { render json: @lockbox.to_json(include: [:posts, :box_memberships]) }
+        format.json { render json: Box.jsonify(@lockbox) }
       end
     else
       respond_to do |format|

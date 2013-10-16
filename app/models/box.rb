@@ -11,4 +11,15 @@ class Box < ActiveRecord::Base
     through: :box_memberships,
     source: :user
   )
+
+  def self.jsonify(target)
+    return target.to_json(include: [:posts, :box_memberships]).html_safe
+  end
+
+  def create_membership(user_id)
+    BoxMembership.create(
+      user_id: user_id,
+      box_id: self.id
+    )
+  end
 end

@@ -11,9 +11,7 @@ class MailboxesController < ApplicationController
 
     respond_to do |format|
       format.html { render :index }
-      format.json {
-        render json: @mailboxes.to_json(include: [:posts, :box_memberships]).html_safe
-      }
+      format.json { render json: Box.jsonify(@mailboxes) }
     end
   end
 
@@ -22,32 +20,9 @@ class MailboxesController < ApplicationController
 
     respond_to do |format|
       # format.html { render :show }
-      format.json {
-        render json: @mailbox.to_json(include: [:posts, :box_memberships]).html_safe
-      }
+      format.json { render json: Box.jsonify(@mailbox) }
     end
   end
-
-  # def create  # is this even necessary?
-  #   @mailbox = Mailbox.new(params[:mailbox])
-  #   post = Post.new(params[:post])
-  #   box_membership = BoxMembership.new(user_id: current_user.id)
-  #
-  #   if @mailbox.save
-  #     post.box_id = @mailbox.id
-  #     post.save
-  #     box_membership.box_id = @mailbox.id
-  #     box_membership.save
-  #
-  #     respond_to do |format|
-  #       format.json { render json: @mailbox.to_json(include: :posts) }
-  #     end
-  #   else
-  #     respond_to do |format|
-  #       format.json { render json: @mailbox.errors.full_messages, status: 422 }
-  #     end
-  #   end
-  # end
 
   def destroy
   end

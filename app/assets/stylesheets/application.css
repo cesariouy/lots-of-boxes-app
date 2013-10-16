@@ -58,6 +58,12 @@ ul {
 #sidebar-items li {
   display: block;
   border: 1px solid black;
+  background: steelBlue;
+/*  opacity: 0.75;*/
+}
+
+#sidebar-items li:hover {
+  opacity: 1;
 }
 
 #soapboxes-li, #lockboxes-li, #mailboxes-li, #inbox-li, #outbox-li {
@@ -70,11 +76,9 @@ ul {
 
 #auth-info {
   background: steelBlue;
-/*  opacity: 0.5;*/
 }
 
 #sidebar-items li a {
-  background: steelBlue;
 /*  opacity: 0.5;*/
   display: block;
   height: 100%;

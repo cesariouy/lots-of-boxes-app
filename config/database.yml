@@ -3,6 +3,7 @@
 #
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
+
 development:
   adapter: postgresql
   database: lots_of_boxes_app_development
@@ -24,3 +25,9 @@ development:
 #   database: db/production.sqlite3
 #   pool: 5
 #   timeout: 5000
+
+test:
+  adapter: postgresql
+  database: lots_of_boxes_app_test
+  host: localhost
+  username: appacademy

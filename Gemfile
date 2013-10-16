@@ -29,6 +29,10 @@ group :development do
   gem "binding_of_caller"
 end
 
+group :test, :development do
+  gem 'rspec-rails'
+end
+
 gem 'newrelic_rpm'
 
 # To use Jbuilder templates for JSON

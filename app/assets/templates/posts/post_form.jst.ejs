@@ -19,14 +19,24 @@
     <input type="text" name="post[link]">
   </label><br>
 
-  <br><label>sign as:</label><br>
-    <input type="radio" name="post[signature]" value="anonymous" checked>anonymous<br>
-    <input type="radio" name="post[signature]" value="<%= CURRENT_USER_USERNAME %>">username<br>
+  <br>sign as:<br>
+  <label>
+    <input type="radio" name="post[signature]" value="<%= CURRENT_USER_USERNAME %>" checked>
+    username</label><br>
+  <label>
+    <input type="radio" name="post[signature]" value="anonymous">
+    anonymous</label><br>
 
-  <br><label>post position:</label><br>
-    <input type="radio" name="post[align]" value="left">left<br>
-    <input type="radio" name="post[align]" value="center" checked>center<br>
-    <input type="radio" name="post[align]" value="right">right<br>
+  <br>post position:<br>
+  <label>
+    <input type="radio" name="post[align]" value="left">
+      left</label><br>
+  <label>
+    <input type="radio" name="post[align]" value="center" checked>
+      center</label><br>
+  <label>
+    <input type="radio" name="post[align]" value="right">
+      right</label><br>
 
   <br><input type="submit" value="add post">
 </form>

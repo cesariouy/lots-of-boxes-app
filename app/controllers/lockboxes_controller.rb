@@ -5,25 +5,26 @@ class LockboxesController < ApplicationController
     all_lockboxes = current_user.followed_boxes.where(type: "Lockbox")
     all_lockboxes.reject! { |lockbox| lockbox.posts.empty? }
 
-    sorted_lockboxes = all_lockboxes.sort_by do |lockbox|
+    @lockboxes = all_lockboxes.sort_by do |lockbox|
       lockbox.posts.last.id
     end
 
-    @lockboxes = sorted_lockboxes.to_json(include: [:posts, :box_memberships]).html_safe
-
     respond_to do |format|
       format.html { render :index }
-      format.json { render json: @lockboxes }
+      format.json {
+        render json: @lockboxes.to_json(include: [:posts, :box_memberships]).html_safe
+      }
     end
   end
 
   def show
-    lockbox = Lockbox.find(params[:id])
-    @lockbox = lockbox.to_json(include: [:posts, :box_memberships]).html_safe
+    @lockbox = Lockbox.find(params[:id])
 
     respond_to do |format|
       # format.html { render :show }
-      format.json { render json: @lockbox }
+      format.json {
+        render json: @lockbox.to_json(include: [:posts, :box_memberships]).html_safe
+      }
     end
   end
 
@@ -39,7 +40,7 @@ class LockboxesController < ApplicationController
       box_membership.save
 
       respond_to do |format|
-        format.json { render json: @lockbox.to_json(include: :posts) }
+        format.json { render json: @lockbox.to_json(include: [:posts, :box_memberships]) }
       end
     else
       respond_to do |format|

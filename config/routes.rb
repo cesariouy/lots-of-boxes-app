@@ -4,12 +4,15 @@ LotsOfBoxesApp::Application.routes.draw do
 
   resources :posts, only: [:create, :destroy]
   resources :box_memberships, only: [:create, :destroy]
+  resources :contacts, only: [:create, :destroy]
 
   resources :soapboxes, only: [:create, :destroy, :index, :show]
   resources :lockboxes, only: [:create, :destroy, :index, :show]
   resources :mailboxes, only: [:create, :destroy, :index, :show]
 
-  resources :contacts, only: [:create, :destroy]
+  # these "shows" are like the other boxes' "indexes"
+  resource :inbox, only: [:show]
+  resource :outbox, only: [:show]
 
   root to: "soapboxes#index"
 end

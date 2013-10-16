@@ -10,7 +10,7 @@
       CURRENT_USER_USERNAME = "guest";
     <% end %>
 
-    var soapboxesData = <%= @soapboxes %>;
+    var soapboxesData = <%= @soapboxes.to_json(include: [:posts, :box_memberships]).html_safe %>;
 
     LotsOfBoxesApp.initializeSoap(soapboxesData);
   });

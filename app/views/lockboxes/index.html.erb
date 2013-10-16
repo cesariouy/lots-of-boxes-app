@@ -10,7 +10,7 @@
       CURRENT_USER_USERNAME = "guest";
     <% end %>
 
-    var lockboxesData = <%= @lockboxes %>;
+    var lockboxesData = <%= @lockboxes.to_json(include: [:posts, :box_memberships]).html_safe %>;
 
     LotsOfBoxesApp.initializeLock(lockboxesData);
   });

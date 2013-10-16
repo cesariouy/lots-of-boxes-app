@@ -4,25 +4,26 @@ class SoapboxesController < ApplicationController
     all_soapboxes = Soapbox.all
     all_soapboxes.reject! { |soapbox| soapbox.posts.empty? }
 
-    sorted_soapboxes = all_soapboxes.sort_by do |soapbox|
+    @soapboxes = all_soapboxes.sort_by do |soapbox|
       soapbox.posts.last.id
     end
 
-    @soapboxes = sorted_soapboxes.to_json(include: [:posts, :box_memberships]).html_safe
-
     respond_to do |format|
       format.html { render :index }
-      format.json { render json: @soapboxes }
+      format.json {
+        render json: @soapboxes.to_json(include: [:posts, :box_memberships]).html_safe
+      }
     end
   end
 
   def show
-    soapbox = Soapbox.find(params[:id])
-    @soapbox = soapbox.to_json(include: [:posts, :box_memberships]).html_safe
+    @soapbox = Soapbox.find(params[:id])
 
     respond_to do |format|
       # format.html { render :show }
-      format.json { render json: @soapbox }
+      format.json {
+        render json: @soapbox.to_json(include: [:posts, :box_memberships]).html_safe
+      }
     end
   end
 
@@ -42,7 +43,7 @@ class SoapboxesController < ApplicationController
       end
 
       respond_to do |format|
-        format.json { render json: @soapbox.to_json(include: :posts) }
+        format.json { render json: @soapbox.to_json(include: [:posts, :box_memberships]) }
       end
     else
       respond_to do |format|

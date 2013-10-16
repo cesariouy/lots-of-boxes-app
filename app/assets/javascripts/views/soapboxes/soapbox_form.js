@@ -26,10 +26,10 @@ LotsOfBoxesApp.Views.SoapboxForm = Backbone.View.extend({
     var linkInput = $(newForm).find('[name="post[link]"]');
     linkInput.attr('name', 'soapbox[post][link]');
 
-    var signatureInput = $(newForm).children('[name="post[signature]"]');
+    var signatureInput = $(newForm).find('[name="post[signature]"]');
     signatureInput.attr('name', 'soapbox[post][signature]');
 
-    var alignInput = $(newForm).children('[name="post[align]"]');
+    var alignInput = $(newForm).find('[name="post[align]"]');
     alignInput.attr('name', 'soapbox[post][align]');
 
     // new 'box-title' input

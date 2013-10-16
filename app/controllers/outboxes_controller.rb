@@ -11,9 +11,9 @@ class OutboxesController < ApplicationController
 
     respond_to do |format|
       format.html { render :show }
-      format.json {
-        render json: @outbox_items.to_json(include: :box).html_safe
-      }
+      # format.json {
+      #   render json: @outbox_items.to_json(include: :box).html_safe
+      # }
     end
   end
 end

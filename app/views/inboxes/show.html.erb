@@ -1,10 +1,10 @@
-<div id="out-content" class="content index">
-  <h1>outBox</h1>
+<div id="in-content" class="content index">
+  <h1>inBox</h1>
 
   <ul>
-    <!-- outbox items already ordered from most recent to oldest -->
-    <% @outbox_items.each do |post| %>
-      <% box = post.box %>
+    <!-- inbox items already ordered from most recent to oldest? -->
+    <% @inbox_items.each do |box| %>
+      <% post = box.posts.last %>
 
       <% case box.type %>
       <% when "Soapbox" %>
@@ -48,8 +48,7 @@
           <% end %>
         </p>
       </a>
-      <%= button_to "delete post", post_url(post), method: :delete %>
-      </li>
+    </li>
     <% end %>
   </ul>
 </div>

@@ -99,3 +99,5 @@ LotsOfBoxesApp.Views.LockboxesIndex = Backbone.View.extend({
   }
 
 });
+
+_.extend(LotsOfBoxesApp.Views.LockboxesIndex.prototype, BoxesIndexView);

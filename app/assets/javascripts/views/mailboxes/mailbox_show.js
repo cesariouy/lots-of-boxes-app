@@ -131,3 +131,5 @@ LotsOfBoxesApp.Views.MailboxShow = Backbone.View.extend({
 //   }
 
 });
+
+_.extend(LotsOfBoxesApp.Views.MailboxShow.prototype, BoxShowView);

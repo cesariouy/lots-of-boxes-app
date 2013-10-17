@@ -38,3 +38,5 @@ LotsOfBoxesApp.Views.MailboxForm = Backbone.View.extend({
   }
 
 });
+
+_.extend(LotsOfBoxesApp.Views.MailboxForm.prototype, BoxFormView);

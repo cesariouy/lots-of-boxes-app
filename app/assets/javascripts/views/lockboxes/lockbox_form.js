@@ -103,3 +103,5 @@ LotsOfBoxesApp.Views.LockboxForm = Backbone.View.extend({
     });
   }
 });
+
+_.extend(LotsOfBoxesApp.Views.LockboxForm.prototype, BoxFormView);

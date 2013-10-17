@@ -90,3 +90,5 @@ LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
   }
 
 });
+
+_.extend(LotsOfBoxesApp.Views.SoapboxesIndex.prototype, BoxesIndexView);

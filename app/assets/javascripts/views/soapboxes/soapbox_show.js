@@ -142,3 +142,5 @@ LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
   }
 
 });
+
+_.extend(LotsOfBoxesApp.Views.SoapboxShow.prototype, BoxShowView);

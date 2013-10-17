@@ -101,3 +101,5 @@ LotsOfBoxesApp.Views.MailboxesIndex = Backbone.View.extend({
   }
 
 });
+
+_.extend(LotsOfBoxesApp.Views.MailboxesIndex.prototype, BoxesIndexView);

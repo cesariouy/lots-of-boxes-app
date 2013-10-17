@@ -57,3 +57,5 @@ LotsOfBoxesApp.Views.SoapboxForm = Backbone.View.extend({
     });
   }
 });
+
+_.extend(LotsOfBoxesApp.Views.SoapboxForm.prototype, BoxFormView);

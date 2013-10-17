@@ -122,3 +122,5 @@ LotsOfBoxesApp.Views.LockboxShow = Backbone.View.extend({
   }
 
 });
+
+_.extend(LotsOfBoxesApp.Views.LockboxShow.prototype, BoxShowView);

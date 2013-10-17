@@ -89,7 +89,7 @@ describe Box do
     end
   end
 
-  describe "box#create_membership" do
+  describe "#create_membership" do
     it "should create a BoxMembership given a user's :id" do
       box = Box.create(title: "New Box")
 

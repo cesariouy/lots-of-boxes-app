@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Lockbox do
 
-  describe "lockbox#key=" do
+  describe "#key=" do
     it "should set a lockbox's key_digest given a key" do
       lockbox = Lockbox.new(title: "lockbox")
       key = "password"
@@ -13,7 +13,7 @@ describe Lockbox do
     end
   end
 
-  describe "lockbox#is_key?" do
+  describe "#is_key?" do
     before(:each) do
       @lockbox = Lockbox.new(title: "lockbox", key: "password")
     end
@@ -29,7 +29,7 @@ describe Lockbox do
     end
   end
 
-  describe "Lockbox::find_by_credentials" do
+  describe "::find_by_credentials" do
     before(:each) do
       @lockbox = Lockbox.create(title: "new_lockbox", key: "password")
     end

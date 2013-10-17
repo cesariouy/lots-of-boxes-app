@@ -1,18 +1,23 @@
 class Contact < ActiveRecord::Base
-  attr_accessible :from, :to
+  attr_accessible :from, :to_str, :to
   validates :from, :to, presence: true
-  # validates :from, uniqueness: {scope: :to}
+  validates :from, uniqueness: {scope: :to}
 
-  def find_pair
-    pair_contact = Contact.find_by_from_and_to(self.to, self.from)
-    if pair_contact
-      return pair_contact.from
-    else
-      return nil
-    end
+  def to_str=(to_str)
+    user = User.find_by_username(to_str)
+    self.to = user ? user.id : nil
   end
 
-  def create_mailbox(current_user, paired_user)
+  def pair_exists?
+    pair_contact = Contact.find_by_from_and_to(self.to, self.from)
+    !!pair_contact
+  end
+
+  def create_mailbox_etc
+    current_user = User.find(self.from)
+    paired_user = User.find(self.to)
+    return nil if Mailbox.exists?(current_user, paired_user)
+
     mailbox = Mailbox.create(
       title: "correspondence between " + paired_user.username + " and " + current_user.username
     )
@@ -22,7 +27,7 @@ class Contact < ActiveRecord::Base
       user_id: -1,
       body: "contact established",
       signature: "SYSTEM",
-      align: "center",
+      align: "center"
     )
 
     BoxMembership.create(box_id: mailbox.id, user_id: paired_user.id)

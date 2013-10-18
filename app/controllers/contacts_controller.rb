@@ -4,8 +4,8 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(params[:contact])
 
-    if @contact.pair_exists?
-      @contact.create_mailbox_etc
+    if @contact.to
+      @contact.create_mailbox_etc if @contact.pair_exists?
     else
       respond_to do |format|
         format.json { render json: { error: "no such user" }, status: 422 }

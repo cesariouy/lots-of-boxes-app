@@ -2,15 +2,16 @@
   <ul id="sidebar-items">
     <li id="auth-info" class="sidebar-item">
       <% if !current_user.nil? %>
-        <ul style="list-style: none">
-          <li>logged in as: <%= current_user.username %></li>
-          <li><%= button_to "logout", session_url, method: :delete %></li>
-        </ul>
+        <p style="margin:20px 10px; margin-bottom:0">
+          logged in as:<br>
+          <%= current_user.username %></p>
+        <div style="margin-left:80px">
+          <%= button_to "logout", session_url, method: :delete %></div>
       <% else %>
-        <ul style="list-style: none">
-          <li>logged in as: GUEST</li>
-          <li><%= button_to "login", new_session_url, method: :get %></li>
-        </ul>
+        <p style="margin:20px 10px; margin-bottom:0">
+          logged in as: GUEST<br></p>
+        <div style="margin-left:80px">
+          <%= button_to "login", new_session_url, method: :get %></div>
       <% end %>
     </li>
 
@@ -23,7 +24,7 @@
     </li>
 
     <li id="mailboxes-li" class="sidebar-item">
-      <a href="<%= mailboxes_url %>">mailBoxes</a>
+      <a href="<%= mailboxes_url %>">mailBox</a>
     </li>
 
     <li id="inbox-li" class="sidebar-item">
@@ -35,12 +36,12 @@
     </li>
 
     <li id="add-li" class="sidebar-item">
-      <a href="#">hover over this to add</a>
+      <a href="#">hover to add</a>
       <div id='add-form'>nothing to add...</div>
     </li>
 
-    <li id="refresh-li" class="sidebar-item">
+    <!-- <li id="refresh-li" class="sidebar-item">
       <a href="#">refresh</a>
-    </li>
+    </li> -->
   </ul>
 </div>

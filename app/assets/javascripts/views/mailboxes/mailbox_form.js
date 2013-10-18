@@ -6,7 +6,7 @@ LotsOfBoxesApp.Views.MailboxForm = Backbone.View.extend({
   render: function() {
     var that = this;
 
-    that.$el.html('<h4>add contact</h4>');
+    that.$el.html('<h4>add contact</h4><br>');
     var $contactForm = $('<form id="contact-form"></form>');
     var $fromInput = $(
       '<input type="hidden" name="contact[from]" value="'
@@ -17,7 +17,7 @@ LotsOfBoxesApp.Views.MailboxForm = Backbone.View.extend({
 
     $contactForm.append($fromInput);
     $contactForm.append($toInput);
-    $contactForm.append('<input type="submit" value="add contact">');
+    $contactForm.append('<br><input type="submit" value="add contact">');
 
     that.$el.append($contactForm);
     return that;

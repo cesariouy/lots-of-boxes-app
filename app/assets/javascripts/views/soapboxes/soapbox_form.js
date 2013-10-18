@@ -34,9 +34,12 @@ LotsOfBoxesApp.Views.SoapboxForm = Backbone.View.extend({
 
     // new 'box-title' input
     var titleInput = $(
-      '<label>title:<br><input type="text" name="soapbox[title]"></label>'
+      '<label>title: <input type="text" name="soapbox[title]"></label>'
     );
+
+    var $h4 = $('<h4>add soapBox</h4><br>')
     $(newForm).prepend(titleInput);
+    $(newForm).prepend($h4);
 
     that.$el.html(newForm);
     return that;

@@ -37,7 +37,9 @@ LotsOfBoxesApp.Views.LockboxesIndex = Backbone.View.extend({
     that.$el.empty();
     $('#lock-content').attr('class', 'content index');
 
-    that.$el.html('<h1>lockBoxes</h1>');
+    that.$el.html(
+      '<h1>lockBoxes <em>(private threads)</em></h1>'
+    );
 
     var $ul = $('<ul></ul>');
 

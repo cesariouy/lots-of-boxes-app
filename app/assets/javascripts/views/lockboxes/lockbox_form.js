@@ -8,7 +8,7 @@ LotsOfBoxesApp.Views.LockboxForm = Backbone.View.extend({
     var that = this;
 
     // insert unlock form
-    that.$el.html('<h4>unlock a box</h4>');
+    that.$el.html('<h4>unlock box</h4><br>');
     var $unlockForm = $('<form id="unlock-form"></form>');
     var $userIdInput = $(
       '<input type="hidden" name="box_membership[user_id]" value="'
@@ -23,10 +23,10 @@ LotsOfBoxesApp.Views.LockboxForm = Backbone.View.extend({
     $unlockForm.append($userIdInput);
     $unlockForm.append($lockboxTitleInput);
     $unlockForm.append($lockboxKeyInput);
-    $unlockForm.append('<input type="submit" value="unlock">');
+    $unlockForm.append('<input type="submit" value="unlock"><br><br>');
 
     that.$el.append($unlockForm);
-    that.$el.append('<h4>--OR-- add new lockBox</h4>');
+    that.$el.append('<h4>OR add new lockBox</h4><br>');
 
     var postFormView = new LotsOfBoxesApp.Views.PostForm();
     var renderedPostForm = postFormView.render().el;
@@ -57,12 +57,12 @@ LotsOfBoxesApp.Views.LockboxForm = Backbone.View.extend({
 
     // new title/key inputs
     var keyInput = $(
-      '<br><label>key:<br><input type="password" name="lockbox[key]"></label>'
+      '<br><label>key: <input type="password" name="lockbox[key]"></label>'
     );
     $(newForm).prepend(keyInput);
 
     var titleInput = $(
-      '<label>title:<br><input type="text" name="lockbox[title]"></label>'
+      '<label>title: <input type="text" name="lockbox[title]"></label>'
     );
     $(newForm).prepend(titleInput);
 

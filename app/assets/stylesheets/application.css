@@ -18,9 +18,10 @@
 }*/
 
 body {
-  background:
-    url('/assets/use_your_illusion.png') fixed;
-    margin: 0;
+  background: url('/assets/use_your_illusion.png') fixed;
+  padding: 0;
+  border: 0;
+  margin: 0;
   color: burlyWood;
   font-family: sans-serif;
 /*    height: 100%;*/
@@ -45,71 +46,93 @@ ul {
   margin: 0;
 }
 
+
+/* sidebar */
+
 .sidebar-area {
   float: left;
   position: fixed;
 }
 
 .sidebar {
-  border: 1px solid black;
-  width: 250px;
+  width: 150px;
 }
 
-#sidebar-items li {
+.sidebar-item {
   display: block;
-  border: 1px solid black;
+  margin-bottom: 4px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: transparent;
   background: steelBlue;
-/*  opacity: 0.75;*/
+  opacity: 0.75;
+  height: 30px;
 }
 
 #sidebar-items li:hover {
   opacity: 1;
 }
 
-#soapboxes-li, #lockboxes-li, #mailboxes-li, #inbox-li, #outbox-li {
-  height: 30px;
-}
-
-#auth-info, #add-li, #refresh-li {
+#auth-info {
   height: 90px;
 }
 
-#auth-info {
-  background: steelBlue;
-}
-
 #sidebar-items li a {
-/*  opacity: 0.5;*/
+  padding: 7px 25px;
   display: block;
-  height: 100%;
 }
 
 #add-form {
-  color: black;
+  background: midnightBlue;
+  color: indianRed;
   position: fixed;
   top: 0;
-  width: 300px;
-  height: 600px;
-  background: white;
+  left: 0;
+  width: 160px;
+  min-height: 300px;
+  padding: 25px;
   display: none;
+}
+
+#add-form input, #add-form textarea {
+  background: midnightBlue;
+  color: indianRed;
+}
+
+#add-form input[type="text"], #add-form input[type="password"] {
+  width: 75px;
+}
+
+#add-form #reply-to input {
+  width: 50px;
+}
+
+#add-form h4 {
+  margin: 0;
 }
 
 #add-li:hover #add-form {
   display: block;
-/*  position: relative;*/
 }
+
+
+/* content */
 
 .content {
   width: 625px;
-/*  height: 100%;*/
   background: rgba(169, 169, 169, 0.25);
   margin-left: auto;
-  margin-right: 125px;
+  margin-right: 75px;
   padding: 10px 10px 20px 10px;
 }
 
 .index {
   background: rgba(169, 169, 169, 0.25);
+}
+
+.index h1 em {
+  font-size: large;
+  font-style: italic;
 }
 
 .box {
@@ -138,6 +161,9 @@ ul {
   padding: 10px;
 }
 
+
+/* alignment */
+
 .left {
   margin-right: auto;
 }
@@ -150,6 +176,9 @@ ul {
   margin-left: auto;
   margin-right: auto;
 }
+
+
+/* hiding/displaying follow/unfollow buttons */
 
 h2 button.follow {
   display: inline;

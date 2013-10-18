@@ -37,7 +37,7 @@ LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
     that.$el.empty();
     $('#soap-content').attr('class', 'content index');
 
-    that.$el.html('<h1>soapBoxes</h1>');
+    that.$el.html('<h1>soapBoxes <em>(public discussions)</em></h1>');
 
     var $ul = $('<ul></ul>');
 

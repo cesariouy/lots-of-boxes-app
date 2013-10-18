@@ -38,7 +38,7 @@ LotsOfBoxesApp.Views.MailboxesIndex = Backbone.View.extend({
     that.$el.empty();
     $('#mail-content').attr('class', 'content index');
 
-    that.$el.html('<h1>mailBoxes</h1>');
+    that.$el.html('<h1>mailBox <em>(private messages)</em></h1>');
 
     var $ul = $('<ul></ul>');
 

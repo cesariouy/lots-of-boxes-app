@@ -21,7 +21,7 @@ var BoxesIndexView = {
     // title
     var $h3 = $('<h3></h3>');
     var title = box.escape('title');
-    var boxType = box.get('type')
+    var boxType = box.get('type').toLowerCase();
     var boxNumStr = " (" + boxType + " #" + idString + ",";
     var numPostsStr = " posts: " + box.get('posts').length + ")";
     var titleContent = title + boxNumStr + numPostsStr;

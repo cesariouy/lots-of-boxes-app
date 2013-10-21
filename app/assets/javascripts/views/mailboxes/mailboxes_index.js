@@ -8,17 +8,8 @@ LotsOfBoxesApp.Views.MailboxesIndex = Backbone.View.extend({
   listenOnMailboxes: function() {
     var that = this;
     that.listenTo(that.collection, "sync", function() {
-      // that.collection.fetch({
-      //   reset: true,
-      //   success: function() {
-      //     that.render();
-      //   }
-      // });
       that.render();
     });
-    // that.listenTo(that.collection, "remove", function() {
-    //   that.render();
-    // });
   },
 
   renderForm: function() {
@@ -44,30 +35,12 @@ LotsOfBoxesApp.Views.MailboxesIndex = Backbone.View.extend({
 
     // boxes should be pre-sorted from controller based on most recent post
     _(that.collection.models).each(function(mailbox) {
-      var $li = $('<li></li>');
-      var idString = mailbox.get('id').toString();
-      $li.addClass(idString);
-      $li.addClass('box-preview');
-
-      //  title
-      var $h3 = $('<h3></h3>');
-      var title = mailbox.escape('title');
-      var boxNumStr = " (lockbox #" + idString + ",";
-      var numPostsStr = " posts: " + mailbox.get('posts').length + ")";
-      var titleContent = title + boxNumStr + numPostsStr;
-      $h3.html(titleContent);
-
-      $li.append($h3);
+      var $li = that.constructListItem(mailbox, "mailbox");
 
       //  last post
       var lastPost = new LotsOfBoxesApp.Models.Post(
         _(mailbox.get('posts')).first()  // beware first/last issue...
       );
-
-      // // alignment based on box creator, not most recent post
-      // var firstPost = new LotsOfBoxesApp.Models.Post(
-      //   _(mailbox.get('posts')).last()  // beware first/last issue...
-      // );
 
       // alignment based on last respondent
       if (lastPost.get('user_id') === CURRENT_USER_ID) {

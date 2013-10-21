@@ -1,23 +1,8 @@
 LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
   initialize: function() {
     var that = this;
-    that.listenOnSoapboxes();
+    that.listenOnNewBoxes();
     that.renderForm();
-  },
-
-  listenOnSoapboxes: function() {
-    var that = this;
-    that.listenTo(that.collection, "add", function() {
-      that.collection.fetch({
-        reset: true,
-        success: function() {
-          that.render();
-        }
-      });
-    });
-    // that.listenTo(that.collection, "remove", function() {
-    //   that.render();
-    // });
   },
 
   renderForm: function() {
@@ -37,26 +22,15 @@ LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
     that.$el.empty();
     $('#soap-content').attr('class', 'content index');
 
-    that.$el.html('<h1>soapBoxes <em>(public discussions)</em></h1>');
+    that.$el.html(
+      '<h1>soapBoxes <em>(public discussions)</em></h1>'
+    );
 
     var $ul = $('<ul></ul>');
 
     // boxes should be pre-sorted from controller based on most recent post
     _(that.collection.models).each(function(soapbox) {
-      var $li = $('<li></li>');
-      var idString = soapbox.get('id').toString();
-      $li.addClass(idString);
-      $li.addClass('box-preview');
-
-      // title
-      var $h3 = $('<h3></h3>');
-      var title = soapbox.escape('title');
-      var boxNumStr = " (soapbox #" + idString + ",";
-      var numPostsStr = " posts: " + soapbox.get('posts').length + ")";
-      var titleContent = title + boxNumStr + numPostsStr;
-      $h3.html(titleContent);
-
-      $li.append($h3);
+      var $li = that.constructListItem(soapbox, "soapbox");
 
       // last post
       var lastPost = new LotsOfBoxesApp.Models.Post(

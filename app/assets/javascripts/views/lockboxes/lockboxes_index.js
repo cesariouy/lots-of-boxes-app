@@ -1,23 +1,8 @@
 LotsOfBoxesApp.Views.LockboxesIndex = Backbone.View.extend({
   initialize: function() {
     var that = this;
-    that.listenOnLockboxes();
+    that.listenOnNewBoxes();
     that.renderForm();
-  },
-
-  listenOnLockboxes: function() {
-    var that = this;
-    that.listenTo(that.collection, "add", function() {
-      that.collection.fetch({
-        reset: true,
-        success: function() {
-          that.render();
-        }
-      });
-    });
-    // that.listenTo(that.collection, "remove", function() {
-    //   that.render();
-    // });
   },
 
   renderForm: function() {
@@ -45,20 +30,7 @@ LotsOfBoxesApp.Views.LockboxesIndex = Backbone.View.extend({
 
     // boxes should be pre-sorted from controller based on most recent post
     _(that.collection.models).each(function(lockbox) {
-      var $li = $('<li></li>');
-      var idString = lockbox.get('id').toString();
-      $li.addClass(idString);
-      $li.addClass('box-preview');
-
-      //  title
-      var $h3 = $('<h3></h3>');
-      var title = lockbox.escape('title');
-      var boxNumStr = " (lockbox #" + idString + ",";
-      var numPostsStr = " posts: " + lockbox.get('posts').length + ")";
-      var titleContent = title + boxNumStr + numPostsStr;
-      $h3.html(titleContent);
-
-      $li.append($h3);
+      var $li = that.constructListItem(lockbox, "lockbox");
 
       //  last post
       var lastPost = new LotsOfBoxesApp.Models.Post(

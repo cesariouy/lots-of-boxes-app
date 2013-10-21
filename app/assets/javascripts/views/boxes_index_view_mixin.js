@@ -1,5 +1,5 @@
 var BoxesIndexView = {
-  
+
   listenOnNewBoxes: function() {
     var that = this;
     that.listenTo(that.collection, "add", function() {
@@ -11,8 +11,8 @@ var BoxesIndexView = {
       });
     });
   },
-  
-  constructListItem: function(box) {
+
+  constructListItem: function(box, boxType) {
     var $li = $('<li></li>');
     var idString = box.get('id').toString();
     $li.addClass(idString);
@@ -21,15 +21,14 @@ var BoxesIndexView = {
     // title
     var $h3 = $('<h3></h3>');
     var title = box.escape('title');
-    var boxType = box.get('type').toLowerCase();
     var boxNumStr = " (" + boxType + " #" + idString + ",";
     var numPostsStr = " posts: " + box.get('posts').length + ")";
     var titleContent = title + boxNumStr + numPostsStr;
     $h3.html(titleContent);
 
     $li.append($h3);
-      
+
     return $li;
   }
-  
+
 };

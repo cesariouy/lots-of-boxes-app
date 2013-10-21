@@ -1,5 +1,5 @@
 var BoxShowView = {
-  
+
   listenOnMemberships: function() {
     var that = this;
     that.boxMemberships = new LotsOfBoxesApp.Collections.BoxMemberships(
@@ -12,7 +12,7 @@ var BoxShowView = {
       that.render();
     });
   },
-  
+
   listenOnPosts: function() {
     var that = this;
     that.posts = new LotsOfBoxesApp.Collections.Posts(
@@ -30,7 +30,7 @@ var BoxShowView = {
     //   that.render();
     // });
   },
-  
+
   renderForm: function() {
     var that = this;
     that.formView = new LotsOfBoxesApp.Views.PostForm({
@@ -39,7 +39,7 @@ var BoxShowView = {
     });
     $('#add-form').html(that.formView.render().el);
   },
-  
+
   events: {
     "click button.follow": "follow",
     "click button.unfollow": "unfollow"
@@ -53,20 +53,19 @@ var BoxShowView = {
 
     return boxMembership;
   },
-  
-  constructH2: function() {
+
+  constructH2: function(boxType) {
     var that = this;
     var $h2 = $('<h2></h2>');
-    
+
     var title = that.model.escape('title');
     var idString = that.model.get('id').toString();
-    var boxType = that.model.get('type').toLowerCase();
     var boxNumStr = " (" + boxType + " #" + idString + ",";
     var numPostsStr = " posts: " + that.model.get('posts').length + ") ";
-    
+
     var titleContent = title + boxNumStr + numPostsStr;
     $h2.html(titleContent);
-    
+
     return $h2;
   }
 

@@ -28,32 +28,7 @@ LotsOfBoxesApp.Views.LockboxForm = Backbone.View.extend({
     that.$el.append($unlockForm);
     that.$el.append('<h4>OR add new lockBox</h4><br>');
 
-    var postFormView = new LotsOfBoxesApp.Views.PostForm();
-    var renderedPostForm = postFormView.render().el;
-    var newForm = $(renderedPostForm).find('form');
-
-    // strip post view of 'box', 'reply-to' inputs
-    var boxIdInput = $(newForm).find('[name="post[box_id]"]');
-    $(boxIdInput).remove();
-
-    var replyInput = $(newForm).find('#reply-to');
-    $(replyInput).remove();
-
-    // rename post[] inputs to lockbox[post][] inputs
-    var userIdInput = $(newForm).find('[name="post[user_id]"]');
-    userIdInput.attr('name', 'lockbox[post][user_id]');
-
-    var bodyInput = $(newForm).find('[name="post[body]"]');
-    bodyInput.attr('name', 'lockbox[post][body]');
-
-    var linkInput = $(newForm).find('[name="post[link]"]');
-    linkInput.attr('name', 'lockbox[post][link]');
-
-    var signatureInput = $(newForm).find('[name="post[signature]"]');
-    signatureInput.attr('name', 'lockbox[post][signature]');
-
-    var alignInput = $(newForm).find('[name="post[align]"]');
-    alignInput.attr('name', 'lockbox[post][align]');
+    var newForm = that.modifiedPostForm("lockbox");
 
     // new title/key inputs
     var keyInput = $(

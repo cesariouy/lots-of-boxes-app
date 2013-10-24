@@ -50,6 +50,7 @@ ul {
 .sidebar-area {
   float: left;
   position: fixed;
+  height: 100%;
 }
 
 .sidebar {
@@ -98,11 +99,12 @@ ul {
   color: indianRed;
   position: fixed;
   top: 0;
-  left: 0;
+  left: -220px;
   width: 160px;
-  min-height: 310px;
+  height: 100%;
   padding: 25px;
-  display: none;
+  transition: left 0.5s;
+  -webkit-transition: left 0.5s;
 }
 
 #add-form input, #add-form textarea {
@@ -123,7 +125,27 @@ ul {
 }
 
 #add-li:hover #add-form {
-  display: block;
+  left: 0;
+}
+
+/* fine print */
+.fine-print {
+  position: absolute;
+  z-index: -1;
+}
+
+#bg-credit, #bg-credit a {
+  font-size: x-small;
+  text-align: left;
+  color: darkGray;
+}
+
+#cesario, #cesario a {
+  font-size: medium;
+  right: 20px;
+  bottom: 0;
+  text-align: right;
+  color: indianRed;
 }
 
 /* content */

@@ -1,6 +1,16 @@
 # Welcome to Lots of Boxes
 [Lots of Boxes](http://www.lotsofbox.us) is an interactive message board featuring different types of "boxes," or topic threads.
 
+* [Exercise your freedom of speech](#exercise-your-freedom-of-speech)
+* [Protect your privacy](#protect-your-privacy)
+  * [Worried about revealing your identity?](#worried-about-revealing-your-identity)
+* [Converse with friends](#converse-with-friends)
+* [Think inside the box...](#think-inside-the-box)
+  * [...and outside the box](#and-outside-the-box)
+* [Pick a side](#pick-a-side)
+* [Languages and technologies](#languages-and-technologies)
+* [Coming soon](#coming-soon)
+
 ### Exercise your freedom of speech
 Create a new [SoapBox](http://www.lotsofbox.us/soapboxes) to start a public discussion about a topic of your choice. On the main SoapBoxes page, threads are organized by most recent activity. Heated discussions are likely to remain near the top of the page, but newly-created SoapBoxes will also appear at the top.
 
@@ -31,18 +41,22 @@ SoapBox previews on the main page will display the content of their most recent 
 ## Languages and technologies
 The following were used in the development of this application:
 
-* Ruby on Rails
-* RSpec
-* JavaScript
-* jQuery
-* Underscore.js
-* Backbone.js
-* PostgreSQL
-* BCrypt
-* HTML5
-* CSS
-* Git
-* Heroku
-* New Relic
+* [Ruby on Rails](http://rubyonrails.org/)
+* [RSpec](http://rspec.info/)
+* [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+* [jQuery](http://jquery.com/)
+* [Underscore.js](http://underscorejs.org/)
+* [Backbone.js](http://backbonejs.org/)
+* [PostgreSQL](http://www.postgresql.org/)
+* [BCrypt](http://rubygems.org/gems/bcrypt-ruby)
+* [HTML5](http://www.w3.org/html/)
+* [CSS](http://www.w3.org/Style/CSS/)
+* [Git](http://git-scm.com/)
+* [Heroku](http://heroku.com)
+* [New Relic](http://newrelic.com)
 
 ###  Coming soon
+Extras that I plan to implement:
+
+* infinite scrolling ([Kaminari](http://rubygems.org/gems/kaminari))
+* real-time updating ([Pusher](http://pusher.com/))

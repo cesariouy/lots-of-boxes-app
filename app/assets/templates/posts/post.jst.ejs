@@ -16,7 +16,7 @@
 <p>
   <% var postLink = post.escape('link') %>
   <% if (postLink) { %>
-    link: <a href="<%= postLink %>">
+    link: <a href="<%= postLink %>" target="_blank">
       <% if (postLink.length < 45) { %>
         <%= postLink %>
       <% } else { %>

@@ -63,7 +63,7 @@ var BoxShowView = {
     var boxNumStr = " (" + boxType + " #" + idString + ",";
     var numPostsStr = " posts: " + that.model.get('posts').length + ") ";
 
-    var titleContent = title + boxNumStr + numPostsStr;
+    var titleContent = title + '<em>' + boxNumStr + numPostsStr + '</em>';
     $h2.html(titleContent);
 
     return $h2;

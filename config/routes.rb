@@ -14,5 +14,7 @@ LotsOfBoxesApp::Application.routes.draw do
   resource :inbox, only: [:show]
   resource :outbox, only: [:show]
 
-  root to: "soapboxes#index"
+  # home page w/ app description
+  resource :home, only: :show
+  root to: "homes#show"
 end

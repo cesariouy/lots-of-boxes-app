@@ -3,6 +3,27 @@ LotsOfBoxesApp.Views.MailboxShow = Backbone.View.extend({
     var that = this;
     that.listenOnPosts();
     that.renderForm();
+    that.modifyForm();
+  },
+
+  modifyForm: function() {
+    var $form = $('#post-form');
+
+    // remove irrelevant user inputs
+    var signatureLabel = $form.find('#signature-label');
+    signatureLabel.remove();
+    var signatureInputs = $form.find('.signatures');
+    signatureInputs.remove();
+    var alignLabel = $form.find('#align-label');
+    alignLabel.remove();
+    var alignInputs = $form.find('.aligns');
+    alignInputs.remove();
+
+    // insert hidden inputs
+    var hiddenSignature = '<input type="hidden" name="post[signature]" value="' + CURRENT_USER_USERNAME + '">';
+    $form.append(hiddenSignature);
+    var hiddenAlign = '<input type="hidden" name="post[align]" value="center">';
+    $form.append(hiddenAlign);
   },
 
   render: function() {
@@ -30,10 +51,11 @@ LotsOfBoxesApp.Views.MailboxShow = Backbone.View.extend({
       var postAlign;
       if (post.get('user_id') === CURRENT_USER_ID) {
         postAlign = 'left';
+      } else if (post.get('user_id') === -1) {
+        postAlign = 'center';
       } else {
         postAlign = 'right';
       };
-
 
       var postView = new LotsOfBoxesApp.Views.Post({
         model: post,

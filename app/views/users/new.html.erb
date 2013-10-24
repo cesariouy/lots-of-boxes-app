@@ -1,11 +1,22 @@
 <style>
   #new-user {
-    margin-left: 375px;
+    width: 300px;
+    margin: auto;
+  }
+
+  #new-user h1 {
+    margin: 0;
+    padding-top: 100px
+  }
+
+  #new-user input {
+    background: transparent;
+    color: burlyWood;
   }
 </style>
 
 <div id="new-user">
-<h1 style="margin:0; padding-top: 20px">create account</h1>
+<h1 style="">create account</h1>
 
 <%= render "form", user: @user %>
 </div>

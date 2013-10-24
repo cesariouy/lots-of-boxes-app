@@ -1,11 +1,22 @@
 <style>
   #new-session {
-    margin-left: 375px;
+    width: 300px;
+    margin: auto;
+  }
+
+  #new-session h1 {
+    margin: 0;
+    padding-top: 100px
+  }
+
+  #new-session input {
+    background: transparent;
+    color: burlyWood;
   }
 </style>
 
 <div id="new-session">
-<h1 style="margin:0; padding-top: 20px">log in</h1>
+<h1>log in</h1>
 
 <form action="<%= session_url %>" method="post">
   <input

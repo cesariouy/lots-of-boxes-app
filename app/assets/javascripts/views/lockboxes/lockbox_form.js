@@ -26,7 +26,7 @@ LotsOfBoxesApp.Views.LockboxForm = Backbone.View.extend({
     $unlockForm.append('<input type="submit" value="unlock"><br><br>');
 
     that.$el.append($unlockForm);
-    that.$el.append('<h4>OR add new lockBox</h4><br>');
+    that.$el.append('<h4>OR create lockBox</h4><br>');
 
     var newForm = that.modifiedPostForm("lockbox");
 
@@ -57,6 +57,9 @@ LotsOfBoxesApp.Views.LockboxForm = Backbone.View.extend({
         $('form').find('textarea').val('');
         $('form').find('input[type="password"]').val('');
         that.collection.add(savedBox);
+      },
+      error: function(model, response) {
+        alert(response.responseText);
       }
     });
   },
@@ -74,6 +77,9 @@ LotsOfBoxesApp.Views.LockboxForm = Backbone.View.extend({
         $('form').find('input[type="password"]').val('');
         var unlockedBox = savedMembership.get('box');
         that.collection.add(unlockedBox);
+      },
+      error: function(model, response) {
+        alert(response.responseText);
       }
     });
   }

@@ -48,10 +48,12 @@ LotsOfBoxesApp.Views.MailboxShow = Backbone.View.extend({
       var $li = $('<li></li>');
 
       // posts should align based on author
+      var posterID = post.get('user_id');
       var postAlign;
-      if (post.get('user_id') === CURRENT_USER_ID) {
+
+      if (posterID === CURRENT_USER_ID) {
         postAlign = 'left';
-      } else if (post.get('user_id') === -1) {
+      } else if (posterID === -1) {
         postAlign = 'center';
       } else {
         postAlign = 'right';

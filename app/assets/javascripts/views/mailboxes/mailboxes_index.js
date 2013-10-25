@@ -43,8 +43,11 @@ LotsOfBoxesApp.Views.MailboxesIndex = Backbone.View.extend({
       );
 
       // alignment based on last respondent
-      if (lastPost.get('user_id') === CURRENT_USER_ID) {
+      var lastPosterID = lastPost.get('user_id');
+      if (lastPosterID === CURRENT_USER_ID) {
         $li.addClass('left');
+      } else if (lastPosterID === -1) {
+        $li.addClass('center');
       } else {
         $li.addClass('right');
       };

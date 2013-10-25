@@ -5,7 +5,8 @@
 <p>
   <% var postRef = post.escape('post_id') %>
   <% if (postRef) { %>
-    reply to: <a href="#<%= postRef %>"><%= postRef %></a>
+    <a href="#<%= postRef %>" title="in reply to"><img src="/assets/reply.png" width="16px">
+      <%= postRef %></a>
   <% } %>
 </p>
 
@@ -16,7 +17,8 @@
 <p>
   <% var postLink = post.escape('link') %>
   <% if (postLink) { %>
-    link: <a href="<%= postLink %>" target="_blank">
+    <a href="<%= postLink %>" target="_blank">
+      <img src="/assets/link.png" width="16px">
       <% if (postLink.length < 45) { %>
         <%= postLink %>
       <% } else { %>

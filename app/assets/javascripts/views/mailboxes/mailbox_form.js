@@ -33,6 +33,9 @@ LotsOfBoxesApp.Views.MailboxForm = Backbone.View.extend({
       success: function(savedContact) {
         $('form').find('input[type="text"]').val('');
         that.collection.fetch();
+      },
+      error: function(model, response) {
+        alert(response.responseText);
       }
     });
   }

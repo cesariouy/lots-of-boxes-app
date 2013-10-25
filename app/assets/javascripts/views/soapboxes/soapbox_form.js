@@ -12,7 +12,7 @@ LotsOfBoxesApp.Views.SoapboxForm = Backbone.View.extend({
       '<label>title: <input type="text" name="soapbox[title]"></label>'
     );
 
-    var $h4 = $('<h4>add soapBox</h4><br>')
+    var $h4 = $('<h4>create soapBox</h4><br>')
     $(newForm).prepend(titleInput);
     $(newForm).prepend($h4);
 
@@ -31,6 +31,9 @@ LotsOfBoxesApp.Views.SoapboxForm = Backbone.View.extend({
         $('form').find('input[type="text"]').val('');
         $('form').find('textarea').val('');
         that.collection.add(savedBox);
+      },
+      error: function(model, response) {
+        alert(response.responseText);
       }
     });
   }

@@ -58,28 +58,36 @@ ul {
 }
 
 .sidebar-item {
-  text-align: right;
+  text-align: center;
   display: block;
   margin-bottom: 4px;
-  margin-right: 30px;
   border-width: 2px;
   border-style: solid;
   border-color: transparent;
   background: steelBlue;
-  opacity: 0.75;
   height: 30px;
 }
 
 #sidebar-items li {
-  transition: margin-right, opacity, 0.5s;
-  -webkit-transition: margin-right, opacity, 0.5s;
-  margin-right: 30px;
+  transition: text-align, margin-right, opacity, 0.5s;
+  -webkit-transition: text-align, margin-right, opacity, 0.5s;
+  margin-right: 20px;
   opacity: 0.75;
 }
 
 #sidebar-items li:hover {
   margin-right: 0;
   opacity: 1;
+  text-align: right;
+}
+
+#sidebar-items li a:hover {
+  text-decoration: none;
+}
+
+#sidebar-items li a:hover span {
+  display: inline;
+  color: burlyWood;
 }
 
 #sidebar-items #auth-info {
@@ -89,8 +97,16 @@ ul {
 }
 
 #sidebar-items li a {
-  padding: 7px 20px;
+  padding: 7px 10px;
   display: block;
+}
+
+#sidebar-items li a span {
+  transition: display, color, 0.5s;
+  -webkit-transition: display, color, 0.5s;
+  display: none;
+  color: transparent;
+  float: left;
 }
 
 #add-form {
@@ -101,10 +117,12 @@ ul {
   top: 0;
   left: -220px;
   width: 160px;
-  height: 100%;
+  height: calc(100% - 50px);
+  height: -webkit-calc(100% - 50px);
   padding: 25px;
   transition: left 0.5s;
   -webkit-transition: left 0.5s;
+  overflow: auto;
 }
 
 #add-form input, #add-form textarea {

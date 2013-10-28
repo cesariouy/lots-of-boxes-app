@@ -125,7 +125,13 @@ ul {
   overflow: auto;
 }
 
-#add-form input, #add-form textarea {
+#add-form input {
+  background: midnightBlue;
+  color: indianRed;
+}
+
+#add-form textarea {
+  width: 150px;
   background: midnightBlue;
   color: indianRed;
 }
@@ -198,6 +204,7 @@ ul {
 }
 
 .box-preview:hover {
+  cursor: pointer;
   opacity: 1;
 }
 

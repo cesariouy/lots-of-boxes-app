@@ -46,4 +46,32 @@
 
 <p><a href="<%= new_user_url %>">create a new account</a></p>
 
+<br>
+
+<h2>Exploring the site for the first time but don't want to create an account?</h2>
+
+<h4 style="float:left; margin:5px 20px;">Click this: </h4>
+
+<form action="<%= session_url %>" method="post" style="float:left">
+  <input
+    name="authenticity_token"
+    type="hidden"
+    value="<%= form_authenticity_token %>"
+  >
+
+  <input
+    type="hidden"
+    name="user[username]"
+    value="DEMO"
+  >
+
+  <input
+    type="hidden"
+    name="user[password]"
+    value="qqqqqq"
+  >
+
+  <input type="submit" value="BOSS BUTTON">
+</form>
+
 </div>

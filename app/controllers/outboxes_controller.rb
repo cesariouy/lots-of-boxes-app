@@ -3,9 +3,9 @@ class OutboxesController < ApplicationController
 
   def show
     all_items = current_user.posts
-    # sorted_items = all_items.sort_by do |post|
-    #   post.id
-    # end
+    sorted_items = all_items.sort_by do |post|
+      post.id
+    end
 
     @outbox_items = all_items
 

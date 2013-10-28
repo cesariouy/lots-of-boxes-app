@@ -34,7 +34,7 @@ LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
 
       // last post
       var lastPost = new LotsOfBoxesApp.Models.Post(
-        _(soapbox.get('posts')).first()  // beware first/last issue...
+        _(soapbox.get('posts')).last()  // beware first/last issue...
       );
 
       $li.addClass(lastPost.get('align'));

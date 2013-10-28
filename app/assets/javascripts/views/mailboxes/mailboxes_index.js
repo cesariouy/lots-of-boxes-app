@@ -39,7 +39,7 @@ LotsOfBoxesApp.Views.MailboxesIndex = Backbone.View.extend({
 
       //  last post
       var lastPost = new LotsOfBoxesApp.Models.Post(
-        _(mailbox.get('posts')).first()  // beware first/last issue...
+        _(mailbox.get('posts')).last()  // beware first/last issue...
       );
 
       // alignment based on last respondent

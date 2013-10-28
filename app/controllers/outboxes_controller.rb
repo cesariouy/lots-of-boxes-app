@@ -7,7 +7,7 @@ class OutboxesController < ApplicationController
       post.id
     end
 
-    @outbox_items = all_items
+    @outbox_items = all_items.reverse
 
     respond_to do |format|
       format.html { render :show }

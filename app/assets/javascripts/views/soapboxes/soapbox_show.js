@@ -31,7 +31,7 @@ LotsOfBoxesApp.Views.SoapboxShow = Backbone.View.extend({
 
     var postList = $('<ul></ul>');
 
-    // beware iteration (first => last / last => first)
+    // iteration first => last
     var clonedPosts = that.posts.clone();
     var sortedPosts = _(clonedPosts.models).sortBy(function(post) {
       return post.get('id');

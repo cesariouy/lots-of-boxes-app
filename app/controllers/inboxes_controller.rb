@@ -6,7 +6,7 @@ class InboxesController < ApplicationController
     all_items.reject! { |box| box.posts.empty? }
 
     sorted_array = all_items.sort_by do |box|
-      box.posts.last.id  # beware first/last issue
+      box.posts.last.id
     end
 
     @inbox_items = sorted_array.reverse

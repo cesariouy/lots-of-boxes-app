@@ -39,7 +39,7 @@ LotsOfBoxesApp.Views.MailboxesIndex = Backbone.View.extend({
 
       //  last post
       var lastPost = new LotsOfBoxesApp.Models.Post(
-        _(mailbox.get('posts')).last()  // beware first/last issue...
+        _(mailbox.get('posts')).last()
       );
 
       // alignment based on last respondent
@@ -71,7 +71,7 @@ LotsOfBoxesApp.Views.MailboxesIndex = Backbone.View.extend({
     var classString = $(event.currentTarget).attr('class');
     that.stopListening();
 
-    // first item in class is actually box id
+    // first item in class is box id
     var idClass = classString.split(" ")[0];
     Backbone.history.navigate('mail/' + idClass, {trigger: true});
   }

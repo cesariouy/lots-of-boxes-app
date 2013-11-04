@@ -34,7 +34,7 @@ LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
 
       // last post
       var lastPost = new LotsOfBoxesApp.Models.Post(
-        _(soapbox.get('posts')).last()  // beware first/last issue...
+        _(soapbox.get('posts')).last()
       );
 
       $li.addClass(lastPost.get('align'));
@@ -58,7 +58,7 @@ LotsOfBoxesApp.Views.SoapboxesIndex = Backbone.View.extend({
     var classString = $(event.currentTarget).attr('class');
     that.stopListening();
 
-    // first item in class is actually box id
+    // first item in class is box id
     var idClass = classString.split(" ")[0];
     Backbone.history.navigate('soap/' + idClass, {trigger: true});
   }

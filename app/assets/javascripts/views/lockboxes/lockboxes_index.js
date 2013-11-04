@@ -34,12 +34,12 @@ LotsOfBoxesApp.Views.LockboxesIndex = Backbone.View.extend({
 
       //  last post
       var lastPost = new LotsOfBoxesApp.Models.Post(
-        _(lockbox.get('posts')).last()  // beware first/last issue...
+        _(lockbox.get('posts')).last()
       );
 
       // alignment based on box creator, not most recent post
       var firstPost = new LotsOfBoxesApp.Models.Post(
-        _(lockbox.get('posts')).last()  // beware first/last issue...
+        _(lockbox.get('posts')).last()
       );
 
       if (firstPost.get('user_id') === CURRENT_USER_ID) {

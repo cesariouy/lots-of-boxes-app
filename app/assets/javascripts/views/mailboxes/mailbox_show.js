@@ -71,19 +71,7 @@ LotsOfBoxesApp.Views.MailboxShow = Backbone.View.extend({
 
     that.$el.append(postList);
     return that;
-  }// ,
-//
-//   unfollow: function(event) {
-//     var that = this;
-//     event.preventDefault();
-//
-//     var boxMembership = that.findMembership();
-//     boxMembership.destroy({
-//       success: function() {
-//       }
-//     });
-//   }
-
+  }
 });
 
 _.extend(LotsOfBoxesApp.Views.MailboxShow.prototype, BoxShowView);
